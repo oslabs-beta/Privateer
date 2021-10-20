@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Sidenav from './components/Sidenav';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { purple } from '@mui/material/colors';
+import { lightBlue } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -10,7 +10,7 @@ const theme = createTheme({
     primary: {
       main: '#262626',
     },
-    secondary: purple,
+    secondary: lightBlue,
   },
 });
 

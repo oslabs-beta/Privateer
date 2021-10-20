@@ -17,9 +17,7 @@ app.get('/', (req, res) => {
 });
 
 // 404 handler
-app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
-);
+app.use((req, res) => res.status(404).send('Page not found!'));
 
 // global error handler
 app.use((err, req, res, next) => {
