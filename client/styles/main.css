@@ -2,15 +2,18 @@ body {
   background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
   /* background-color: red; */
   margin: 0;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #layout {
   display: flex;
-  justify-content: stretch;
 }
 
 #main {
+  margin: 2em;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
