@@ -12,6 +12,8 @@ import DirectionsBoatFilledTwoToneIcon from '@mui/icons-material/DirectionsBoatF
 import AssessmentTwoToneIcon from '@mui/icons-material/AssessmentTwoTone';
 import LocalFireDepartmentTwoToneIcon from '@mui/icons-material/LocalFireDepartmentTwoTone';
 import { Link } from 'react-router-dom';
+import logo from '../assets/kmlogo.png';
+import k8Logo from '../assets/k8logo.png';
 
 const drawerWidth = 240;
 
@@ -39,11 +41,7 @@ const Sidenav = () => {
       }}
     >
       <Toolbar>
-        <img
-          src="/client/assets/kmlogo.png"
-          alt="logo"
-          width={drawerWidth - 60}
-        />
+        <img src={logo} alt="logo" width={drawerWidth - 60} />
       </Toolbar>
       <Divider />
       <List>
@@ -73,7 +71,7 @@ const Sidenav = () => {
       </List>
       <Toolbar>
         <img
-          src="/client/assets/kubernetes.png"
+          src={k8Logo}
           alt="logo"
           width={drawerWidth - 60}
           style={{
