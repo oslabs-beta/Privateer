@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,12 +10,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    assetModuleFilename: '[name].[ext]',
   },
   devtool: 'inline-source-map',
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     port: 8080,
-    open: true,
+    open: false,
     hot: true,
     proxy: {
       '/api/': {
@@ -48,5 +50,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './client/index.html',
     }),
+    // new CspHtmlWebpackPlugin({
+    //   'base-uri': ["'self'"],
+    //   'object-src': ["'none'"],
+    //   'script-src': ["'self'"],
+    //   'frame-src': ["'none'"],
+    //   'worker-src': ["'none'"],
+    // }),
   ],
 };
