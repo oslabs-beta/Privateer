@@ -10,7 +10,7 @@ import MetricTable from '../components/MetricTable';
 
 const Monitor = () => {
   return (
-    <Container maxWidth="false">
+    <Container maxWidth="false" sx={{ marginTop: '1em' }}>
       <Grid container spacing={1}>
         <Grid item xs={12} lg={4}>
           <MetricCards content={bars} text="Bar Graphs" />
