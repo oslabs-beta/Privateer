@@ -61,7 +61,7 @@ const Sidenav = ({ drawerWidth }) => {
           </ListItemIcon>
           <ListItemText primary="Monitor" />
         </ListItem>
-        <ListItem button component={Link} to="/graph">
+        <ListItem button component={Link} to="/network">
           <ListItemIcon>
             <ShareTwoToneIcon />
           </ListItemIcon>
