@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import podImg from '../assets/k8_icons/pod-128.png';
 import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
-import NetworkModal from '../components/NetworkModal';
+import NetworkModal from '../components/network/NetworkModal';
 
 const options = {
   autoResize: true,
