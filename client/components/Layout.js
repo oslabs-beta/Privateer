@@ -3,9 +3,9 @@ import Sidenav from './Sidenav';
 
 const Layout = ({ children }) => {
   return (
-    <div id="main">
+    <div id="layout">
       <Sidenav />
-      <div>{children}</div>
+      <div id="main">{children}</div>
     </div>
   );
 };

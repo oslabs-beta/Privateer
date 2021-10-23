@@ -1,16 +1,20 @@
 const { app, BrowserWindow } = require('electron');
 
+const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3000;
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
     webPreferences: {
-      nodeIntegration: true,
+      sandbox: true,
+      nodeIntegration: false,
+      devTools: true,
     },
   });
 
   //load the index.html from a url
-  win.loadURL('http://localhost:3000');
+  win.loadURL(`http://localhost:${PORT}`);
 
   // Open the DevTools.
   win.webContents.openDevTools();
