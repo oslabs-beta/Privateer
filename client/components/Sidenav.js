@@ -10,18 +10,17 @@ import {
 } from '@mui/material';
 import DirectionsBoatFilledTwoToneIcon from '@mui/icons-material/DirectionsBoatFilledTwoTone';
 import AssessmentTwoToneIcon from '@mui/icons-material/AssessmentTwoTone';
+import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
 import LocalFireDepartmentTwoToneIcon from '@mui/icons-material/LocalFireDepartmentTwoTone';
 import { Link } from 'react-router-dom';
 import logo from '../assets/kmlogo.png';
 import k8Logo from '../assets/k8logo.png';
 
-const drawerWidth = 240;
-
 const styles = (theme) => ({
   listItem: {},
 });
 
-const Sidenav = () => {
+const Sidenav = ({ drawerWidth }) => {
   return (
     <Drawer
       variant="permanent"
@@ -61,6 +60,12 @@ const Sidenav = () => {
             <AssessmentTwoToneIcon />
           </ListItemIcon>
           <ListItemText primary="Monitor" />
+        </ListItem>
+        <ListItem button component={Link} to="/graph">
+          <ListItemIcon>
+            <ShareTwoToneIcon />
+          </ListItemIcon>
+          <ListItemText primary="Network" />
         </ListItem>
         <ListItem button component={Link} to="/test">
           <ListItemIcon>

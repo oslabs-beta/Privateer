@@ -6,6 +6,7 @@ import Monitor from './pages/Monitor';
 import Layout from './components/Layout';
 import Create from './pages/Create';
 import Test from './pages/Test';
+import Network from './pages/Network';
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,9 @@ const App = () => {
             </Route>
             <Route path="/test">
               <Test />
+            </Route>
+            <Route path="/network">
+              <Network />
             </Route>
           </Switch>
         </Layout>

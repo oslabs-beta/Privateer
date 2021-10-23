@@ -6,12 +6,15 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
+    "@mui/x-data-grid": "^4.0.1",
     "electron": "^15.3.0",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-graph-vis": "^1.0.7",
     "react-router-dom": "^5.3.0"
   },
   "devDependencies": {
