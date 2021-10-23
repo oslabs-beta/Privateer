@@ -33,7 +33,7 @@ const App = () => {
             <Route path="/test">
               <Test />
             </Route>
-            <Route path="/graph">
+            <Route path="/network">
               <Network />
             </Route>
           </Switch>
