@@ -7,6 +7,7 @@ import bars from '../assets/mockups/bars.png';
 import timeSeries from '../assets/mockups/timeSeries.png';
 import resources from '../assets/mockups/resources.png';
 import gauges from '../assets/mockups/gauges.png';
+import monitorData from '../assets/mockups/monitorData';
 
 const Monitor = () => {
   return (
@@ -25,7 +26,7 @@ const Monitor = () => {
           <MetricCards content={gauges} text="Gauges" />
         </Grid>
         <Grid item xs={12}>
-          <MetricTable />
+          <MetricTable data={monitorData} />
         </Grid>
       </Grid>
     </Container>

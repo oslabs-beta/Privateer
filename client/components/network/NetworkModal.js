@@ -2,16 +2,23 @@ import React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
+import Grow from '@mui/material/Grow';
 import Typography from '@mui/material/Typography';
-import { Divider } from '@mui/material';
+import {
+  Divider,
+  Table,
+  TableContainer,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@mui/material';
+import { startCase } from 'lodash';
 
 const NetworkModal = ({ data, pointer, open, setClosed }) => {
   const style = {
     position: 'absolute',
     top: pointer.y,
-    left: pointer.x,
-    transform: 'translate(50%, 0%)',
+    left: pointer.x + 240,
     width: 400,
     bgcolor: 'background.paper',
     color: 'white',
@@ -30,28 +37,47 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
           invisible: true,
         }}
       >
-        <Box sx={style}>
-          <Typography id="transition-modal-title" variant="h6" component="h2">
-            {data?.name}
-          </Typography>
-          <Divider />
-          {data &&
-            Object.entries(data).map(([k, v]) => {
-              return (
-                <Typography
-                  key={k}
-                  id="transition-modal-description"
-                  sx={{ mt: 2 }}
+        <Grow in={open} style={{ transformOrigin: 'top left' }}>
+          <Box sx={style}>
+            <Typography
+              id="transition-modal-title"
+              variant="h5"
+              component="h5"
+              sx={{ padding: '0.5em' }}
+            >
+              {data?.name}
+            </Typography>
+            <Divider />
+            {data && (
+              <TableContainer>
+                <Table
+                  sx={{ maxWidth: 400 }}
+                  size="small"
+                  aria-label="a dense table"
                 >
-                  {`${k}: ${v}`}
-                </Typography>
-              );
-            })}
-        </Box>
+                  <TableBody>
+                    {Object.entries(data).map(([k, v]) => (
+                      <TableRow
+                        key={k}
+                        sx={{
+                          '&:last-child td, &:last-child th': { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {startCase(k)}
+                        </TableCell>
+                        <TableCell>{v}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
+          </Box>
+        </Grow>
       </Modal>
     </div>
   );
