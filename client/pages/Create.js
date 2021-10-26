@@ -28,7 +28,6 @@ const Create = () => {
             </Route>
           </Switch>
         </Router>
-
       </Typography>
     </Container>
   );
