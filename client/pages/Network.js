@@ -59,12 +59,12 @@ const MonitorGraph = () => {
   };
 
   const imgMap = {
-    Ingress: ingressImg,
-    Service: serviceImg,
-    Pod: podImg,
+    ingress: ingressImg,
+    service: serviceImg,
+    pod: podImg,
   };
 
-  const makeNode = (label, id) => {
+  const makeNode = (data, id) => {
     return {
       id: id,
       font: {
@@ -74,7 +74,7 @@ const MonitorGraph = () => {
         strokeWidth: 3,
         strokeColor: 'black',
       },
-      label: label,
+      label: data.name,
       shape: 'image',
       shapeProperties: {
         useImageSize: true,
@@ -82,42 +82,121 @@ const MonitorGraph = () => {
       shadow: {
         enabled: true,
       },
-      image: imgMap[label],
+      image: imgMap[data.type],
     };
   };
 
+  //mockup data
   const nodeList = [
-    'Ingress',
-    'Service',
-    'Service',
-    'Pod',
-    'Pod',
-    'Pod',
-    'Pod',
-    'Pod',
-    'Ingress',
-    'Service',
-    'Pod',
+    {
+      type: 'ingress',
+      name: 'https://foo.example.com',
+    },
+    {
+      type: 'ingress',
+      name: 'https://bar.example.com',
+    },
+    {
+      type: 'service',
+      name: 'cluster_IP',
+      IP: '10.1.1.7',
+      port: 8080,
+      targetPort: 8080,
+    },
+    {
+      type: 'service',
+      name: 'cluster_IP',
+      port: 8080,
+      targetPort: 8080,
+    },
+    {
+      type: 'service',
+      name: 'cluster_IP',
+      port: 8080,
+      targetPort: 8080,
+    },
+    {
+      type: 'pod',
+      status: 'OK',
+      name: 'POST_1',
+      containers: 'post',
+      hostIP: '10.1.1.7',
+      podIP: '192.168.1.2',
+      volume: 'VOL_1',
+    },
+    {
+      type: 'pod',
+      status: 'ERROR',
+      name: 'POST_2',
+      containers: 'post',
+      hostIP: '10.1.1.8',
+      podIP: '192.168.1.2',
+      volume: 'VOL_1',
+    },
+    {
+      type: 'pod',
+      status: 'OK',
+      name: 'POST_3',
+      containers: 'post',
+      hostIP: '10.1.1.7',
+      podIP: '192.168.1.3',
+      volume: 'VOL_1',
+    },
+    {
+      type: 'pod',
+      status: 'OK',
+      name: 'COMMENT_1',
+      containers: 'comment',
+      hostIP: '10.1.1.8',
+      podIP: '192.168.1.3',
+      volume: 'VOL_2',
+    },
+    {
+      type: 'pod',
+      status: 'OK',
+      name: 'COMMENT_2',
+      containers: 'comment',
+      hostIP: '10.1.1.8',
+      podIP: '192.168.1.4',
+      volume: 'VOL_2',
+    },
+    {
+      type: 'pod',
+      status: 'OK',
+      name: 'MODERATION_1',
+      containers: 'moderation',
+      hostIP: '10.1.1.9',
+      podIP: '192.168.1.4',
+      volume: 'VOL_2',
+    },
   ];
+
+  const edgeList = [
+    { from: 0, to: 2 },
+    { from: 0, to: 3 },
+    { from: 1, to: 4 },
+    { from: 2, to: 5 },
+    { from: 2, to: 6 },
+    { from: 2, to: 7 },
+    { from: 3, to: 8 },
+    { from: 3, to: 9 },
+    { from: 4, to: 10 },
+  ];
+
   const [state, setState] = useState({
     graph: {
       nodes: nodeList.map((node, i) => makeNode(node, i)),
-      edges: [
-        { from: 0, to: 1 },
-        { from: 0, to: 2 },
-        { from: 1, to: 3 },
-        { from: 1, to: 4 },
-        { from: 1, to: 5 },
-        { from: 2, to: 6 },
-        { from: 2, to: 7 },
-        { from: 8, to: 9 },
-        { from: 9, to: 10 },
-      ],
+      edges: edgeList,
     },
     events: {
       click: ({ nodes, pointer: { DOM } }) => {
         if (nodes.length)
-          setState((state) => ({ ...state, pointer: DOM, open: true }));
+          setState((state) => ({
+            ...state,
+            selected: nodeList[nodes[0]],
+            pointer: DOM,
+            open: true,
+          }));
       },
     },
     open: false,
@@ -125,13 +204,13 @@ const MonitorGraph = () => {
       x: 0,
       y: 0,
     },
+    selected: null,
   });
-  const { graph, events, open, pointer } = state;
-  console.log(open);
+  const { graph, events, selected, open, pointer } = state;
   return (
     <>
       <NetworkModal
-        data={{}}
+        data={selected}
         open={open}
         pointer={pointer}
         setClosed={() => setState((state) => ({ ...state, open: false }))}
