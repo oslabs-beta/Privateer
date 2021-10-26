@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { createTheme, ThemeProvider, Box } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { lightBlue } from '@mui/material/colors';
 import Monitor from './pages/Monitor';
 import Layout from './components/Layout';
