@@ -12,6 +12,7 @@
     "@mui/x-data-grid": "^4.0.1",
     "electron": "^15.3.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-graph-vis": "^1.0.7",
@@ -40,7 +41,7 @@
   "scripts": {
     "start": "NODE_ENV='production' concurrently 'node ./server/server.js' 'electron .'",
     "build": "NODE_ENV='production' webpack",
-    "dev": "NODE_ENV='development' concurrently 'kill-port 3000' 'webpack serve' 'nodemon ./server/server.js' 'wait-on tcp:8080 && electron .'",
+    "dev": "NODE_ENV='development' concurrently 'kill-port 3070' 'webpack serve' 'nodemon ./server/server.js' 'wait-on tcp:8080 && electron .'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

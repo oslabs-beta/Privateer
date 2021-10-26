@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3070;
 
 app.listen(PORT, (err) => {
   console.log(`server listening on port ${PORT}`);

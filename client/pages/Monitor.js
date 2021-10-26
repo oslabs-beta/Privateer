@@ -1,12 +1,13 @@
-import { Grid, Paper, Container, Card } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 import React from 'react';
-import MetricCards from '../components/MetricCards';
+import MetricCards from '../components/monitor/MetricCards';
+import MetricTable from '../components/monitor/MetricTable';
 // temporary mockup images
 import bars from '../assets/mockups/bars.png';
 import timeSeries from '../assets/mockups/timeSeries.png';
 import resources from '../assets/mockups/resources.png';
 import gauges from '../assets/mockups/gauges.png';
-import MetricTable from '../components/MetricTable';
+import monitorData from '../assets/mockups/monitorData';
 
 const Monitor = () => {
   return (
@@ -25,7 +26,7 @@ const Monitor = () => {
           <MetricCards content={gauges} text="Gauges" />
         </Grid>
         <Grid item xs={12}>
-          <MetricTable />
+          <MetricTable data={monitorData} />
         </Grid>
       </Grid>
     </Container>
