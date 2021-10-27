@@ -4,19 +4,15 @@ import React from 'react';
 const MetricCards = ({ content, text }) => {
   return (
     <Card>
-      <CardMedia
-        component="img"
-        height="300"
-        image={content}
-        sx={{ overflowX: 'scroll' }}
+      <iframe
+        width="97%"
+        height="1150px"
+        src={"http://localhost:3000/d/09ec8aa1e996d6ffcd6817bbaff4db1b/kubernetes-api-server?orgId=1&refresh=10s"}
       />
-      {/* <CardContent>
-        <Typography variant="h5" component="div">
-          {text}
-        </Typography>
-      </CardContent> */}
     </Card>
   );
 };
+
+// src={"http://localhost:3000/goto/tJaUhdH7z?orgId=1"}
 
 export default MetricCards;
