@@ -4,17 +4,11 @@ import React from 'react';
 const MetricCards = ({ content, text }) => {
   return (
     <Card>
-      <CardMedia
-        component="img"
-        height="300"
-        image={content}
-        sx={{ overflowX: 'scroll' }}
+      <iframe
+        width="97%"
+        height="1150px"
+        src={'http://localhost:3000/goto/tJaUhdH7z?orgId=1'}
       />
-      {/* <CardContent>
-        <Typography variant="h5" component="div">
-          {text}
-        </Typography>
-      </CardContent> */}
     </Card>
   );
 };
