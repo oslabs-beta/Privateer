@@ -4,12 +4,14 @@ const express = require('express');
 const app = express();
 
 // import routers
+const clusterRouter = require('./routers/cluster');
 
 //utility middleware
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 // use routers
+app.use('/api/cluster', clusterRouter);
 
 // serve index
 app.get('/', (req, res) => {
