@@ -4,6 +4,7 @@ import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import { spacing } from '@mui/system';
 
 // creates multiple fields to populate "data:" properties
 
@@ -29,7 +30,8 @@ const ConfigMap = () => {
   }
 
   return (
-    <div>
+    <Paper elevation={0}
+    sx={{margin: 10, padding: 5}}>
       <form id="config-map">
         <h4>What is your "apiVersion:" value</h4>
           <TextField
@@ -54,7 +56,7 @@ const ConfigMap = () => {
                 shrink: true
               }}
             />
-          <p>text here</p>
+          <h4>"data:"</h4>
             {multiFields}
             {/* <Button id="save-button" variant="contained">Save</Button>
             <Button id="create-button" variant="contained">Create</Button> */}
@@ -63,7 +65,7 @@ const ConfigMap = () => {
             <Button id="save-button" variant="contained">Save</Button>
             <Button id="create-button" variant="contained">Create</Button>
           </div>
-    </div>
+    </Paper>
   )
 };
 
