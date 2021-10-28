@@ -1,28 +1,53 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { useGridControlState } from '@mui/x-data-grid';
+import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { spacing } from '@mui/system';
+
+// creates multiple fields to populate "data:" properties
 
 
+const ConfigMap = () => {
+
+  const multiFields = [];
   
-  const ConfigMap = () => {
+  for (let i = 1; i <= 2; i++) {
+    
+    multiFields.push(
+      // <div>
+      //   <p>hi</p>
+      // </div>
+      <TextField
+        key={i}
+        required
+        id="multi-fields"
+        label="Key/Value Pair"
+        defaultValue=""
+      />
+    );
+  }
+
   return (
-    <div id='config form'>
-        <form id='configMap'>
-          <p>What is your Api Version</p>
+    <Paper elevation={0}
+    sx={{margin: 10, padding: 5}}>
+      <form id="config-map">
+        <h4>What is your "apiVersion:" value</h4>
+          <TextField
+            required
+            id="outlined-required"
+            label="Ex: v1"
+            defaultValue=""
+          />
+          <h4>What is your "metadata" name value?</h4>
             <TextField
               required
               id="outlined-required"
-              label="Required?"
+              label="my-name"
               defaultValue=""
             />
-            <p>What is your "metadata" name?</p>
-              <TextField
-                required
-                id="outlined-required"
-                label="Required?"
-                defaultValue=""
-              />
-            <p>How many "data" key/value pairs?</p>
+          <h4>How many "data:" key/value pairs?</h4>
             <TextField
               id="outlined-number"
               label="Number"
@@ -31,9 +56,17 @@ import { useGridControlState } from '@mui/x-data-grid';
                 shrink: true
               }}
             />
+          <h4>"data:"</h4>
+            {multiFields}
+            {/* <Button id="save-button" variant="contained">Save</Button>
+            <Button id="create-button" variant="contained">Create</Button> */}
         </form>
-    </div>
+          <div className="file-save-buttons">
+            <Button id="save-button" variant="contained">Save</Button>
+            <Button id="create-button" variant="contained">Create</Button>
+          </div>
+    </Paper>
   )
-}
+};
 
 export default ConfigMap;
