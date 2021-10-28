@@ -22,15 +22,22 @@ body,
   justify-content: center;
 }
 
+#create-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 #config-map {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* .input {
 
-} */
+#multi-fields {
+  /* margin: 5px; */
+}
 
 #secret {
   display: flex;
@@ -72,9 +79,8 @@ body,
   flex-direction: table;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
-  /* display: flex; */
-  /* margin: auto; */
+}
 
-
+#config-map > * {
+  margin: 0.5em
 }
