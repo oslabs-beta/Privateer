@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
 const Create = () => {
   return (
     <Container size="sm">
-      <Typography>
+      <Typography component={'span'} variant={'body2'}>
         <CenteredTabs />
         <Router>
           <Switch>

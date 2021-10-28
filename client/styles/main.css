@@ -22,12 +22,59 @@ body,
   justify-content: center;
 }
 
-#configMap {
+#config-map {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.input {
+/* .input {
+
+} */
+
+#secret {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#depServ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#webApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#save-button {
+  /* position: fixed; */
+  bottom: 5%;
+  width: 25%;
+}
+
+#create-button {
+  /* display: flex; */
+  width: 25%;
+  bottom: 5%;
+  margin: 25px;
+  text-align: center;
+}
+
+.file-save-buttons {
+  display: flex;
+  flex-direction: table;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  /* display: flex; */
+  /* margin: auto; */
+
 
 }
