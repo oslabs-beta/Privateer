@@ -7,18 +7,27 @@ import Secret from '../components/create/Secret';
 import WebApp from '../components/create/WebApp';
 import CenteredTabs from '../components/create/Header';
 import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 const mapStateToProps = ({ create }) => ({
   //example
   // newLocation: markets.newLocation,
+  cmApi: create.cmApi,
+  cmMetaName: create.cmMetaName,
+  cmDataNum: create.cmDataNum,
+  cmData: create.cmData,
+  
 });
 
 const mapDispatchToProps = (dispatch) => ({
   //example
   // setLocation: (location) => dispatch(actions.setNewLocation(location)),
+  configSave: (obj) => dispatch(actions.configMapSave(obj)),
+  addData: (num) => dispatch(actions.addDataFields(num))
 });
 
-const Create = () => {
+const Create = props => {
+  
   return (
     <Container size="sm">
       <Typography component={'span'} variant={'body2'}>
@@ -26,7 +35,13 @@ const Create = () => {
         <Router>
           <Switch>
             <Route path="/create/configmap">
-              <ConfigMap />
+              <ConfigMap 
+                cmApi={props.cmApi} 
+                cmMetaName={props.cmMetaName} 
+                cmDataNum={props.cmDataNum}   
+                cmData={props.cmData}
+                changeData={(num) => props.addData(num)}
+              />
             </Route>
             <Route path="/create/depserv">
               <DepServ />
