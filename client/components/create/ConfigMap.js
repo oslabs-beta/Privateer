@@ -6,8 +6,6 @@ import { useGridControlState } from '@mui/x-data-grid';
   
   const ConfigMap = (props) => {
     const multiFields = []
-    const keys = []
-    const values = []
     for (let i = 0; i < props.cmDataNum; i++) {
       console.log()
       multiFields.push(<div key={i} className='data'>
@@ -18,7 +16,6 @@ import { useGridControlState } from '@mui/x-data-grid';
             id="outlined-required"
             label="Data Key"
             sx={{width: '125px', marginRight: '10px'}}
-            onChange={(i)}
             />
             <TextField
             required
@@ -38,6 +35,7 @@ import { useGridControlState } from '@mui/x-data-grid';
               id="outlined-required"
               label="Required?"
               defaultValue=""
+              
             />
             <p>What is your "metadata" name?</p>
               <TextField
@@ -61,6 +59,8 @@ import { useGridControlState } from '@mui/x-data-grid';
               }}
             />
             {multiFields}
+
+            
         </form>
     </div>
   )
