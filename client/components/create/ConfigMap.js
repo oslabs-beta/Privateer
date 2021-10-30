@@ -1,6 +1,10 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { useGridControlState } from '@mui/x-data-grid';
+import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { spacing } from '@mui/system';
 
 
   
@@ -27,8 +31,9 @@ import { useGridControlState } from '@mui/x-data-grid';
         </div>)
     }
     return (
-    <div id='config form'>
-        <form id='configMap'>
+    <Paper elevation={0}
+      sx={{margin: 10, padding: 5}}>  
+        <form id='config-map'>
           <p>What is your Api Version</p>
             <TextField
               required
@@ -58,11 +63,16 @@ import { useGridControlState } from '@mui/x-data-grid';
                 props.changeData(Number(e.target.value));
               }}
             />
+          <h4>"data:"</h4>
             {multiFields}
 
             
         </form>
-    </div>
+          <div className="file-save-buttons">
+            <Button id="save-button" variant="contained">Save</Button>
+            <Button id="create-button" variant="contained">Create</Button>
+          </div>
+    </Paper>
   )
 }
 
