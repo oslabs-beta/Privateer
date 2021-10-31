@@ -58,12 +58,14 @@ const MonitorGraph = () => {
     });
   };
 
+  //maps Kubernetes object icons to object kind
   const imgMap = {
     ingress: ingressImg,
     service: serviceImg,
     pod: podImg,
   };
 
+  //uses Kubernetes object data to creates vis.js node objects with styling
   const makeNode = (data, id) => {
     return {
       id: id,
@@ -171,6 +173,7 @@ const MonitorGraph = () => {
     },
   ];
 
+  //mockup data
   const edgeList = [
     { from: 0, to: 2 },
     { from: 0, to: 3 },
@@ -189,6 +192,7 @@ const MonitorGraph = () => {
       edges: edgeList,
     },
     events: {
+      //if user clicks a node, open modal and store node id and pointer location in state
       click: ({ nodes, pointer: { DOM } }) => {
         if (nodes.length)
           setState((state) => ({
@@ -206,6 +210,7 @@ const MonitorGraph = () => {
     },
     selected: null,
   });
+
   const { graph, events, selected, open, pointer } = state;
   return (
     <>
@@ -215,12 +220,7 @@ const MonitorGraph = () => {
         pointer={pointer}
         setClosed={() => setState((state) => ({ ...state, open: false }))}
       />
-      <Graph
-        graph={graph}
-        options={options}
-        events={events}
-        // style={{ height: '100%' }}
-      />
+      <Graph graph={graph} options={options} events={events} />
     </>
   );
 };

@@ -30,8 +30,8 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="data-modal"
+        aria-describedby="data modal for selected Kubernetes object"
         open={open}
         onClose={setClosed}
         closeAfterTransition
@@ -43,7 +43,7 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
         <Grow in={open} style={{ transformOrigin: 'top left' }}>
           <Box sx={style}>
             <Typography
-              id="transition-modal-title"
+              id="data-modal"
               variant="h5"
               component="h5"
               sx={{ padding: '0.5em' }}
