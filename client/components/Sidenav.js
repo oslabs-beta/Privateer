@@ -49,7 +49,7 @@ const Sidenav = () => {
         <ListItem
           button
           component={Link}
-          to="/create"
+          to="/create/configmap"
           className={styles.listItem}
         >
           <ListItemIcon>
