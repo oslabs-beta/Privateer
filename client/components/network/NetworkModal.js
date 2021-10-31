@@ -14,11 +14,11 @@ import {
 } from '@mui/material';
 import { startCase } from 'lodash';
 
-const NetworkModal = ({ data, pointer, open, setClosed }) => {
+const NetworkModal = ({ data, pointerLocation, modalOpen, setClosed }) => {
   const style = {
     position: 'absolute',
-    top: pointer.y,
-    left: pointer.x + 240,
+    top: pointerLocation.y,
+    left: pointerLocation.x + 240,
     width: 400,
     bgcolor: 'background.paper',
     color: 'white',
@@ -32,7 +32,7 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
       <Modal
         aria-labelledby="data-modal"
         aria-describedby="data modal for selected Kubernetes object"
-        open={open}
+        open={modalOpen}
         onClose={setClosed}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -40,7 +40,7 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
           invisible: true,
         }}
       >
-        <Grow in={open} style={{ transformOrigin: 'top left' }}>
+        <Grow in={modalOpen} style={{ transformOrigin: 'top left' }}>
           <Box sx={style}>
             <Typography
               id="data-modal"

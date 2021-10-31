@@ -4,7 +4,7 @@ import Sidenav from './Sidenav';
 const Layout = ({ children }) => {
   return (
     <div id="layout">
-      <Sidenav drawerWidth={drawerWidth} />
+      <Sidenav />
       <div id="main">{children}</div>
     </div>
   );
