@@ -60,14 +60,16 @@ const MonitorGraph = () => {
       x: 0,
       y: 0,
     },
-    selectedNode: null,
+    selectedNode: { name: null },
   });
 
   const { graph, events, selectedNode, modalOpen, pointerLocation } = state;
+  const { name: nodeName, ...nodeData } = selectedNode;
   return (
     <>
       <NetworkModal
-        data={selectedNode}
+        nodeName={nodeName}
+        nodeData={nodeData}
         modalOpen={modalOpen}
         pointerLocation={pointerLocation}
         setClosed={() => setState((state) => ({ ...state, modalOpen: false }))}
