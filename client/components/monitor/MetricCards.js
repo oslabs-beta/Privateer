@@ -1,16 +1,18 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
-const MetricCards = ({ content, text }) => {
+const MetricCards = ({ url }) => {
   return (
     <Card>
       <iframe
         width="100%"
         height="1150px"
-        src={'http://localhost:3000/goto/tJaUhdH7z?orgId=1'}
+        src={url}
       />
     </Card>
   );
 };
+
+// src={"http://localhost:3000/goto/tJaUhdH7z?orgId=1"}
 
 export default MetricCards;
