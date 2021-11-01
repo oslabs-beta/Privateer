@@ -25,6 +25,11 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/dom": "^8.10.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^27.3.1",
     "babel-loader": "^8.0.4",
     "concurrently": "^5.0.0",
     "cross-env": "^6.0.3",
@@ -33,6 +38,8 @@
     "eslint": "^7.17.0",
     "eslint-plugin-react": "^7.21.5",
     "html-webpack-plugin": "^5.4.0",
+    "jest": "^27.3.1",
+    "jest-canvas-mock": "^2.3.1",
     "kill-port": "^1.6.1",
     "nodemon": "^1.18.9",
     "style-loader": "^0.23.1",
@@ -45,7 +52,7 @@
     "start": "NODE_ENV='production' concurrently 'node ./server/server.js' 'electron .'",
     "build": "NODE_ENV='production' webpack",
     "dev": "NODE_ENV='development' concurrently 'kill-port 3070' 'webpack serve' 'nodemon ./server/server.js' 'wait-on tcp:8080 && electron .'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -16,29 +16,27 @@ const mapStateToProps = ({ create }) => ({
   cmMetaName: create.cmMetaName,
   cmDataNum: create.cmDataNum,
   cmData: create.cmData,
-  
 });
 
 const mapDispatchToProps = (dispatch) => ({
   //example
   // setLocation: (location) => dispatch(actions.setNewLocation(location)),
   configSave: (obj) => dispatch(actions.configMapSave(obj)),
-  addData: (num) => dispatch(actions.addDataFields(num))
+  addData: (num) => dispatch(actions.addDataFields(num)),
 });
 
-const Create = props => {
-  
+const Create = (props) => {
   return (
-    <Container size="sm">
+    <Container size="sm" title="create-container">
       <Typography component={'span'} variant={'body2'}>
         <CenteredTabs />
         <Router>
           <Switch>
             <Route path="/create/configmap">
-              <ConfigMap 
-                cmApi={props.cmApi} 
-                cmMetaName={props.cmMetaName} 
-                cmDataNum={props.cmDataNum}   
+              <ConfigMap
+                cmApi={props.cmApi}
+                cmMetaName={props.cmMetaName}
+                cmDataNum={props.cmDataNum}
                 cmData={props.cmData}
                 changeData={(num) => props.addData(num)}
               />

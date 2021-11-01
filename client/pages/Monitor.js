@@ -11,7 +11,11 @@ import monitorData from '../assets/mockups/monitorData';
 
 const Monitor = () => {
   return (
-    <Container maxWidth="false" sx={{ marginTop: '1em' }}>
+    <Container
+      maxWidth="false"
+      title="monitor-container"
+      sx={{ marginTop: '1em' }}
+    >
       <Grid container spacing={1}>
         <Grid item xs={12} lg={4}>
           <MetricCards content={bars} text="Bar Graphs" />
