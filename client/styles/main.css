@@ -35,10 +35,6 @@ body,
   align-items: center;
 }
 
-#multi-fields {
-  /* margin: 5px; */
-}
-
 #secret {
   display: flex;
   flex-direction: column;
