@@ -17,7 +17,7 @@ describe('Full app rendering', () => {
   });
 
   it('renders main div', () => {
-    const mainContainer = document.querySelector('#main');
+    const mainContainer = screen.getByTitle('main-container');
     expect(mainContainer).toBeInTheDocument();
   });
 });
@@ -47,7 +47,7 @@ describe('Full app routing', () => {
 
   it('routes to Network page', () => {
     userEvent.click(screen.getByText('Network'));
-    const networkGraph = document.querySelector('.vis-network');
+    const networkGraph = screen.getByTitle('network-container');
     expect(networkGraph).toBeInTheDocument();
   });
 

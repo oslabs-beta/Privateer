@@ -5,7 +5,9 @@ const Layout = ({ children }) => {
   return (
     <div id="layout">
       <Sidenav />
-      <div id="main">{children}</div>
+      <div id="main" title="main-container">
+        {children}
+      </div>
     </div>
   );
 };
