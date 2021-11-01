@@ -42,7 +42,7 @@ const Sidenav = () => {
       }}
     >
       <Toolbar>
-        <img src={logo} alt="logo" width={drawerWidth - 60} />
+        <img src={logo} alt="kuberm8Logo" width={drawerWidth - 60} />
       </Toolbar>
       <Divider />
       <List>

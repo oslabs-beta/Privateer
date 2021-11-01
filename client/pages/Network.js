@@ -5,6 +5,7 @@ import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
 import NetworkModal from '../components/network/NetworkModal';
 import options from '../constants/graphOptions';
+import { Container } from '@mui/material';
 import { edgeList, nodeList } from '../assets/mockups/networkData';
 
 const MonitorGraph = () => {
@@ -60,20 +61,22 @@ const MonitorGraph = () => {
       x: 0,
       y: 0,
     },
-    selectedNode: null,
+    selectedNode: { name: null },
   });
 
   const { graph, events, selectedNode, modalOpen, pointerLocation } = state;
+  const { name: nodeName, ...nodeData } = selectedNode;
   return (
-    <>
+    <Container maxWidth="false" title="network-container">
       <NetworkModal
-        data={selectedNode}
+        nodeName={nodeName}
+        nodeData={nodeData}
         modalOpen={modalOpen}
         pointerLocation={pointerLocation}
         setClosed={() => setState((state) => ({ ...state, modalOpen: false }))}
       />
       <Graph graph={graph} options={options} events={events} />
-    </>
+    </Container>
   );
 };
 

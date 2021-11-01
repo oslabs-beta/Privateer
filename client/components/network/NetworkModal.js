@@ -14,7 +14,13 @@ import {
 } from '@mui/material';
 import { startCase } from 'lodash';
 
-const NetworkModal = ({ data, pointerLocation, modalOpen, setClosed }) => {
+const NetworkModal = ({
+  nodeName,
+  nodeData,
+  pointerLocation,
+  modalOpen,
+  setClosed,
+}) => {
   const style = {
     position: 'absolute',
     top: pointerLocation.y,
@@ -48,10 +54,10 @@ const NetworkModal = ({ data, pointerLocation, modalOpen, setClosed }) => {
               component="h5"
               sx={{ padding: '0.5em' }}
             >
-              {data?.name}
+              {nodeName}
             </Typography>
             <Divider />
-            {data && (
+            {nodeData && (
               <TableContainer>
                 <Table
                   sx={{ maxWidth: 400 }}
@@ -59,7 +65,7 @@ const NetworkModal = ({ data, pointerLocation, modalOpen, setClosed }) => {
                   aria-label="a dense table"
                 >
                   <TableBody>
-                    {Object.entries(data).map(([k, v]) => (
+                    {Object.entries(nodeData).map(([k, v]) => (
                       <TableRow
                         key={k}
                         sx={{

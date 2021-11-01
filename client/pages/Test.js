@@ -3,7 +3,7 @@ import React from 'react';
 
 const Test = () => {
   return (
-    <Container size="sm">
+    <Container size="sm" title="test-container">
       <Typography>
         TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE
         TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE
