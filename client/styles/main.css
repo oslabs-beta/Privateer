@@ -1,0 +1,86 @@
+html,
+body,
+#root {
+  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
+  /* background-color: red; */
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#layout {
+  display: flex;
+  height: 100%;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#create-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#config-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#multi-fields {
+  margin: 5px;
+}
+
+#secret {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#depServ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#webApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#save-button {
+  /* position: fixed; */
+  bottom: 5%;
+  width: 25%;
+}
+
+#create-button {
+  /* display: flex; */
+  width: 25%;
+  bottom: 5%;
+  margin: 25px;
+  text-align: center;
+}
+
+.file-save-buttons {
+  display: flex;
+  flex-direction: table;
+  justify-content: center;
+  align-items: center;
+}
+
+#config-map > * {
+  margin: 0.5em
+}

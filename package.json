@@ -1,0 +1,69 @@
+{
+  "name": "Kuberm8",
+  "version": "1.0.0",
+  "description": "Your favorite Kubernetes deployment/monitoring tool",
+  "main": "main.js",
+  "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@kubernetes/client-node": "^0.15.1",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/material": "^5.0.4",
+    "@mui/x-data-grid": "^4.0.1",
+    "electron": "^15.3.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-graph-vis": "^1.0.7",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/dom": "^8.10.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^27.3.1",
+    "babel-loader": "^8.0.4",
+    "concurrently": "^5.0.0",
+    "cross-env": "^6.0.3",
+    "csp-html-webpack-plugin": "^5.1.0",
+    "css-loader": "^1.0.1",
+    "eslint": "^7.17.0",
+    "eslint-plugin-react": "^7.21.5",
+    "html-webpack-plugin": "^5.4.0",
+    "jest": "^27.3.1",
+    "jest-canvas-mock": "^2.3.1",
+    "kill-port": "^1.6.1",
+    "nodemon": "^1.18.9",
+    "style-loader": "^0.23.1",
+    "wait-on": "^6.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "scripts": {
+    "start": "NODE_ENV='production' concurrently 'node ./server/server.js' 'electron .'",
+    "build": "NODE_ENV='production' webpack",
+    "dev": "NODE_ENV='development' concurrently 'kill-port 3070' 'webpack serve' 'nodemon ./server/server.js' 'wait-on tcp:8080 && electron .'",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/Kuberm8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/Kuberm8/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/Kuberm8#readme"
+}
