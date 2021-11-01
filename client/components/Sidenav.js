@@ -20,7 +20,9 @@ const styles = (theme) => ({
   listItem: {},
 });
 
-const Sidenav = ({ drawerWidth }) => {
+const drawerWidth = 240;
+
+const Sidenav = () => {
   return (
     <Drawer
       variant="permanent"
@@ -40,7 +42,7 @@ const Sidenav = ({ drawerWidth }) => {
       }}
     >
       <Toolbar>
-        <img src={logo} alt="logo" width={drawerWidth - 60} />
+        <img src={logo} alt="kuberm8Logo" width={drawerWidth - 60} />
       </Toolbar>
       <Divider />
       <List>

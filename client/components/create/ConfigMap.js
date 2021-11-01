@@ -58,9 +58,6 @@ const ConfigMap = () => {
             />
           <h4>"data:"</h4>
             {multiFields}
-            {/* <Button id="save-button" variant="contained">Save</Button>
-            <Button id="create-button" variant="contained">Create</Button> */}
-            
         </form>
           <div className="file-save-buttons">
             <Button id="save-button" variant="contained">Save</Button>

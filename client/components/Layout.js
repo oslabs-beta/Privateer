@@ -1,13 +1,13 @@
 import React from 'react';
 import Sidenav from './Sidenav';
 
-const drawerWidth = 240;
-
 const Layout = ({ children }) => {
   return (
     <div id="layout">
-      <Sidenav drawerWidth={drawerWidth} />
-      <div id="main">{children}</div>
+      <Sidenav />
+      <div id="main" title="main-container">
+        {children}
+      </div>
     </div>
   );
 };

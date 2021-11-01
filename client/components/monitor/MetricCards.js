@@ -5,7 +5,7 @@ const MetricCards = ({ content, text }) => {
   return (
     <Card>
       <iframe
-        width="97%"
+        width="100%"
         height="1150px"
         src={'http://localhost:3000/goto/tJaUhdH7z?orgId=1'}
       />
