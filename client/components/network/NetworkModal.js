@@ -14,11 +14,17 @@ import {
 } from '@mui/material';
 import { startCase } from 'lodash';
 
-const NetworkModal = ({ data, pointer, open, setClosed }) => {
+const NetworkModal = ({
+  nodeName,
+  nodeData,
+  pointerLocation,
+  modalOpen,
+  setClosed,
+}) => {
   const style = {
     position: 'absolute',
-    top: pointer.y,
-    left: pointer.x + 240,
+    top: pointerLocation.y,
+    left: pointerLocation.x + 240,
     width: 400,
     bgcolor: 'background.paper',
     color: 'white',
@@ -30,9 +36,9 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
+        aria-labelledby="data-modal"
+        aria-describedby="data modal for selected Kubernetes object"
+        open={modalOpen}
         onClose={setClosed}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -40,18 +46,18 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
           invisible: true,
         }}
       >
-        <Grow in={open} style={{ transformOrigin: 'top left' }}>
+        <Grow in={modalOpen} style={{ transformOrigin: 'top left' }}>
           <Box sx={style}>
             <Typography
-              id="transition-modal-title"
+              id="data-modal"
               variant="h5"
               component="h5"
               sx={{ padding: '0.5em' }}
             >
-              {data?.name}
+              {nodeName}
             </Typography>
             <Divider />
-            {data && (
+            {nodeData && (
               <TableContainer>
                 <Table
                   sx={{ maxWidth: 400 }}
@@ -59,7 +65,7 @@ const NetworkModal = ({ data, pointer, open, setClosed }) => {
                   aria-label="a dense table"
                 >
                   <TableBody>
-                    {Object.entries(data).map(([k, v]) => (
+                    {Object.entries(nodeData).map(([k, v]) => (
                       <TableRow
                         key={k}
                         sx={{
