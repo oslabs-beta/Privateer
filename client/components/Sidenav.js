@@ -20,7 +20,9 @@ const styles = (theme) => ({
   listItem: {},
 });
 
-const Sidenav = ({ drawerWidth }) => {
+const drawerWidth = 240;
+
+const Sidenav = () => {
   return (
     <Drawer
       variant="permanent"
