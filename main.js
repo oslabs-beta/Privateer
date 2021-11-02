@@ -1,4 +1,9 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, electron, dialog } = require('electron');
+// const { electron } = require('electron');
+// const { ipcRenderer } = require("electron");
+const path = require('path');
+// const fs = require('electron').remote.require('fs');
+const fs = require('fs');
 
 const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3000;
 
@@ -10,6 +15,7 @@ function createWindow() {
       sandbox: true,
       nodeIntegration: false,
       devTools: true,
+      preload: __dirname + '/preload.js',
     },
   });
 
@@ -45,3 +51,34 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// Function for saving YAML files to directory
+
+ipcMain.on('chooseDir', () => {
+
+  dialog.showSaveDialog({
+    title: 'Select File Path for Save',
+    defaultPath: path.join(__dirname, '../assets/'),
+    buttonLabel: 'Create',
+    filter: [
+      {
+        name: 'YAML Files',
+        extensions: ['yaml']
+      },
+    ],
+    properties: []
+  }).then(function(file) {
+    console.log(file.canceled);
+
+  if (!file.canceled) {
+    console.log(file.filePath.toString());
+
+    fs.writeFile(file.filePath.toString(),
+    'test file', function(err) {
+      if (err) throw err;
+      console.log('Saved');
+      });
+    }
+  }).catch(function(err) {
+    console.log(err)})
+});
