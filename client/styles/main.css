@@ -28,37 +28,18 @@ body,
   justify-content: center;
 }
 
-#config-map {
+.tabs {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0.5em
 }
 
 #multi-fields {
   margin: 5px;
 }
 
-#secret {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#depServ {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#webApp {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 #save-button {
   /* position: fixed; */
@@ -81,6 +62,3 @@ body,
   align-items: center;
 }
 
-#config-map > * {
-  margin: 0.5em
-}
