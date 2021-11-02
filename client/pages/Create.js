@@ -10,7 +10,11 @@ import * as actions from '../actions/actions';
 
 
 const Create = props => {
-  const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[[],[],[],[],[],[],[],[],[],[]], dataNum: 0})
+
+  const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[[],[],[],[],[],[],[],[],[],[]], dataNum: 0});
+  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[[],[],[],[],[],[],[],[],[],[]], dataNum: 0});
+  const [depSerState, setDepSerState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', imageTag:'latest', port:''});
+
   return (
     <Container size="sm" title="create-container">
       <Typography component={'span'} variant={'body2'}>
@@ -27,10 +31,24 @@ const Create = props => {
               />
             </Route>
             <Route path="/create/depserv">
-              <DepServ />
+              <DepServ 
+                depSerApi={depSerState.apiVersion}
+                depSerMetaName={depSerState.metaName}
+                depSerAppName={depSerState.appName}
+                depSerReplicas={depSerState.replicas}
+                depSerImageName={depSerState.imageName}
+                depSerImageTag={depSerState.imageTag}
+                
+              />
             </Route>
             <Route path="/create/secret">
-              <Secret />
+              <Secret 
+              secApi={secState.apiVersion} 
+              secMetaName={secState.metaName} 
+              secDataNum={secState.dataNum}   
+              secData={secState.data}
+              changeState={setSecState}
+              />
             </Route>
             <Route path="/create/webapp">
               <WebApp />
