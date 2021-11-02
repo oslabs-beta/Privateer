@@ -8,6 +8,7 @@ import { spacing } from '@mui/system';
 
   
   const ConfigMap = (props) => {
+    const handleClick = window.electron.ipcRenderer.chooseDir;
     const multiFields = []
     for (let i = 0; i < props.cmDataNum; i++) {
       console.log()
@@ -71,10 +72,10 @@ import { spacing } from '@mui/system';
             {multiFields}
         </form>
         <form className="file-save-buttons">
-          <Button id="create-button" variant="contained">Create</Button>
+        <Button id="create-button" variant="contained" onClick={handleClick}>Create</Button>
         </form>
     </Paper>
   )
-}
+};
 
 export default ConfigMap;
