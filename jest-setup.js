@@ -9,3 +9,9 @@ window.crypto = {
     return nodeCrypto.randomFillSync(buffer);
   },
 };
+//mock ipcRenderer, necessary to test Create component
+window.electron = {
+  ipcRenderer: {
+    chooseDir: jest.fn(),
+  },
+};
