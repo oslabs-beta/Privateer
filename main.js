@@ -4,6 +4,8 @@ const { app, BrowserWindow, ipcMain, electron, dialog } = require('electron');
 const path = require('path');
 // const fs = require('electron').remote.require('fs');
 const fs = require('fs');
+const YAML = require('yaml');
+
 
 const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3000;
 
@@ -54,11 +56,13 @@ app.on('activate', () => {
 
 // Function for saving YAML files to directory
 
-ipcMain.on('chooseDir', () => {
-
+ipcMain.on('chooseDir', (random, random2, random3) => {
+  // let name = 'isaiah';
+  // console.log("second arg", random2)
+  // console.log("third arg", random3)
   dialog.showSaveDialog({
     title: 'Select File Path for Save',
-    defaultPath: path.join(__dirname, '../assets/'),
+    defaultPath: path.join(__dirname, `/${random2}.yaml`),
     buttonLabel: 'Create',
     filter: [
       {
@@ -67,14 +71,18 @@ ipcMain.on('chooseDir', () => {
       },
     ],
     properties: []
-  }).then(function(file) {
+  }).then(file => {
     console.log(file.canceled);
 
   if (!file.canceled) {
     console.log(file.filePath.toString());
 
+    
+    const doc = new YAML.Document();
+    doc.contents = random3;  
+
     fs.writeFile(file.filePath.toString(),
-    'test file', function(err) {
+      doc.toString(), function(err) {
       if (err) throw err;
       console.log('Saved');
       });

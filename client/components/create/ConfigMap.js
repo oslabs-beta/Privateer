@@ -9,6 +9,20 @@ import { spacing } from '@mui/system';
   
   const ConfigMap = (props) => {
     const handleClick = window.electron.ipcRenderer.chooseDir;
+    const configFileGen = () => {
+      const configFile = {
+        apiVersion: props.cmApi,
+        kind: "ConfigMap",
+        metaData: {
+          name: props.cmMetaName,
+        },
+        data: {},
+      }
+      for (let i = 0; i < props.cmDataNum; i++) {
+        configFile.data[props.cmData[i][0]] = props.cmData[i][1]
+      }
+      return configFile
+    }
     const multiFields = []
     for (let i = 0; i < props.cmDataNum; i++) {
       console.log()
@@ -36,6 +50,7 @@ import { spacing } from '@mui/system';
         </div>
       </div>)
     }
+
     return (
       <Paper elevation={0} sx={{margin: 10, padding: 5}}>  
         <form className='tabs'>
@@ -72,7 +87,10 @@ import { spacing } from '@mui/system';
             {multiFields}
         </form>
         <form className="file-save-buttons">
-        <Button id="create-button" variant="contained" onClick={handleClick}>Create</Button>
+        <Button id="create-button" variant="contained"
+        onClick={() => { 
+          const obj = configFileGen()
+          handleClick('configMap', obj)}}>Create</Button>
         </form>
     </Paper>
   )

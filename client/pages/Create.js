@@ -11,8 +11,8 @@ import * as actions from '../actions/actions';
 
 const Create = props => {
 
-  const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[[],[],[],[],[],[],[],[],[],[]], dataNum: 0});
-  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[[],[],[],[],[],[],[],[],[],[]], dataNum: 0});
+  const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
+  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
   const [depSerState, setDepSerState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', imageTag:'latest', port:''});
 
   return (
@@ -27,6 +27,7 @@ const Create = props => {
                 cmMetaName={cmState.metaName} 
                 cmDataNum={cmState.dataNum}   
                 cmData={cmState.data}
+                stateObj={cmState}
                 changeState={setCmState}
               />
             </Route>
