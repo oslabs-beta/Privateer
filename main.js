@@ -76,8 +76,6 @@ ipcMain.on('chooseDir', (random, random2, random3) => {
 
   if (!file.canceled) {
     console.log(file.filePath.toString());
-
-    
     const doc = new YAML.Document();
     doc.contents = random3;  
 

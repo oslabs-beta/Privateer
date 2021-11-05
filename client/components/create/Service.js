@@ -1,11 +1,11 @@
 import React from 'react';
 
-const WebApp = () => {
+const Service = () => {
   return (
-    <div id='webApp'>
+    <div className='tabs'>
       <p>Let's spin up your app</p>
     </div>
   )
 }
 
-export default WebApp;
+export default Service;

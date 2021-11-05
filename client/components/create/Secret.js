@@ -12,17 +12,23 @@ import { spacing } from '@mui/system';
       console.log()
       multiFields.push(<div key={i} className='data'>
         <p> "Secret" Data Key/Value Pair {i + 1} </p>
-          <div>
-            <TextField
+        <div>
+          <TextField
             required
             id="outlined-required"
             label="Data Key"
             value={props.secData[i][0]}
             sx={{width: '125px', marginRight: '10px'}}
-            onChange={(e) => { props.secData[i][0] = e.target.value;
-              props.changeState({apiVersion: props.secApi, metaName: props.secMetaName, data: props.secData , dataNum: props.secDataNum})}}
-            />
-            <TextField
+            onChange={(e) => {
+              props.secData[i][0] = e.target.value;
+              props.changeState(
+                {apiVersion: props.secApi,
+                metaName: props.secMetaName,
+                data: props.secData,
+                dataNum: props.secDataNum
+              })}}
+          />
+          <TextField
             required
             id="outlined-required"
             label="Data Value"
@@ -30,7 +36,7 @@ import { spacing } from '@mui/system';
             sx={{width: '125px', marginLeft: '10px'}}
             onChange={(e) => { props.secData[i][1] = e.target.value;
               props.changeState({apiVersion: props.secApi, metaName: props.secMetaName, data: props.secData , dataNum: props.secDataNum})}}
-            />
+          />
           </div>
         </div>)
     }
@@ -43,7 +49,7 @@ import { spacing } from '@mui/system';
           id="outlined-required"
           label="Required?"
           value={props.secApi}
-          onChange={(e) => props.changeState({apiVersion: e.target.value, metaName: props.secMetaName, data: props.secData, dataNum: props.secDataNum})}   
+          onChange={(e) => props.changeState({apiVersion: e.target.value, metaName: props.secMetaName, data: props.secData, dataNum: props.secDataNum, type: props.secType})}   
         />
         <p>What is your "Secret metadata" name?</p>
         <TextField
@@ -51,27 +57,33 @@ import { spacing } from '@mui/system';
           id="outlined-required"
           label="Required?"
           value={props.secMetaName}
-          onChange={(e) => props.changeState({apiVersion: props.secApi, metaName: e.target.value, data: props.secData, dataNum: props.secDataNum})}
-              />
-            <p>How many "Secret data" key/value pairs?</p>
-            <TextField
-              id="outlined-number"
-              label="Number"
-              type="number"
-              value={props.secDataNum}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{ inputProps: { min: 1, max: 10 } }}
-              sx={{width: '200px'}}
-              onChange={(e) => props.changeState({dataNum: e.target.value, metaName: props.secMetaName, apiVersion: props.secApi, data: props.secData})}
-            />
-          <h4>"Secret" Data</h4>
-            {multiFields}
-        </form>
-          <form className="file-save-buttons">
-            <Button id="create-button" variant="contained">Create</Button>
-          </form>
+          onChange={(e) => props.changeState({apiVersion: props.secApi, metaName: e.target.value, data: props.secData, dataNum: props.secDataNum, type: props.secType})}
+        />
+        <p>What is your "Secret" type?</p>
+        <TextField
+          required
+          id="outlined-required"
+          label="Required?"
+          value={props.secType}
+          onChange={(e) => props.changeState({apiVersion: props.secApi, metaName: props.secData, data: props.secData, dataNum: props.secDataNum, type: e.target.value})}
+        />
+        <p>How many "Secret data" key/value pairs?</p>
+        <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          value={props.secDataNum}
+          InputLabelProps={{shrink: true}}
+          InputProps={{ inputProps: { min: 1, max: 10 } }}
+          sx={{width: '200px'}}
+          onChange={(e) => props.changeState({dataNum: e.target.value, metaName: props.secMetaName, apiVersion: props.secApi, data: props.secData, type: props.secType})}
+        />
+        <h4>"Secret" Data</h4>
+        {multiFields}
+      </form>
+      <form className="file-save-buttons">
+        <Button id="create-button" variant="contained">Create</Button>
+      </form>
     </Paper>
   )
 }
