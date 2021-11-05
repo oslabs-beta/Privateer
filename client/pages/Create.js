@@ -2,9 +2,9 @@ import { Container, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import ConfigMap from '../components/create/ConfigMap';
-import DepServ from '../components/create/DepServ';
+import Deploy from '../components/create/Deploy';
 import Secret from '../components/create/Secret';
-import WebApp from '../components/create/WebApp';
+import Service from '../components/create/Service';
 import CenteredTabs from '../components/create/Header';
 import * as actions from '../actions/actions';
 
@@ -12,8 +12,8 @@ import * as actions from '../actions/actions';
 const Create = props => {
 
   const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
-  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
-  const [depSerState, setDepSerState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', imageTag:'latest', port:''});
+  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0, type: "Opaque"});
+  const [deployState, setDeployState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', port:'', containerName: ''});
 
   return (
     <Container size="sm" title="create-container">
@@ -27,32 +27,34 @@ const Create = props => {
                 cmMetaName={cmState.metaName} 
                 cmDataNum={cmState.dataNum}   
                 cmData={cmState.data}
-                stateObj={cmState}
+                cmState={cmState}
                 changeState={setCmState}
-              />
-            </Route>
-            <Route path="/create/depserv">
-              <DepServ 
-                depSerApi={depSerState.apiVersion}
-                depSerMetaName={depSerState.metaName}
-                depSerAppName={depSerState.appName}
-                depSerReplicas={depSerState.replicas}
-                depSerImageName={depSerState.imageName}
-                depSerImageTag={depSerState.imageTag}
-                
               />
             </Route>
             <Route path="/create/secret">
               <Secret 
-              secApi={secState.apiVersion} 
-              secMetaName={secState.metaName} 
-              secDataNum={secState.dataNum}   
-              secData={secState.data}
-              changeState={setSecState}
+                secApi={secState.apiVersion} 
+                secMetaName={secState.metaName} 
+                secDataNum={secState.dataNum}   
+                secData={secState.data}
+                secType={secState.type}
+                secState={secState}
+                changeState={setSecState}
               />
             </Route>
-            <Route path="/create/webapp">
-              <WebApp />
+            <Route path="/create/deploy">
+              <Deploy 
+                deployApi={deployState.apiVersion}
+                deployMetaName={deployState.metaName}
+                deployAppName={deployState.appName}
+                deployReplicas={deployState.replicas}
+                deployImageName={deployState.imageName}
+                deployState={deployState}
+                changeState={setDeployState}
+              />
+            </Route>
+            <Route path="/create/service">
+              <Service />
             </Route>
           </Switch>
         </Router>

@@ -15,9 +15,9 @@ function CenteredTabs({ drawerWidth }) {
     <Box sx={{ width: '100%', bgcolor: '#121212', borderBottomRightRadius: 20 , borderBottomLeftRadius: 20, height: 75 }}>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab sx={{width:'25%'}} label="ConfigMap" component={Link} to={'/create/configMap'}/>
-        <Tab sx={{width:'25%'}} label="Deploy/Service" component={Link} to={'/create/depServ'}/>
         <Tab sx={{width:'25%'}} label="Secret" component={Link} to={'/create/secret'}/>
-        <Tab sx={{width:'25%'}} label="WebApp" component={Link} to={'/create/webApp'}/>
+        <Tab sx={{width:'25%'}} label="Deployment" component={Link} to={'/create/deploy'}/>
+        <Tab sx={{width:'25%'}} label="Service" component={Link} to={'/create/service'}/>
       </Tabs>
     </Box>
   );
