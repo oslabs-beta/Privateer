@@ -55,7 +55,7 @@ import { spacing } from '@mui/system';
     return (
       <Paper elevation={0} sx={{margin: 10, padding: 5}}>  
         <form className='tabs'>
-          <p>What is your ConfigMap Api Version</p>
+          <p>"apiVersion:"</p>
           <TextField
             required
             id="outlined-required"
@@ -63,7 +63,7 @@ import { spacing } from '@mui/system';
             value={props.cmApi}
             onChange={(e) => props.changeState({...props.cmState, apiVersion: e.target.value,})}        
           />
-          <p>What is your ConfigMap "metadata" name?</p>
+          <p>Metadata "name:"</p>
           <TextField
             required
             id="outlined-required"
@@ -71,7 +71,7 @@ import { spacing } from '@mui/system';
             value={props.cmMetaName}
             onChange={(e) => props.changeState({...props.cmState, metaName: e.target.value,})}
           />
-          <p>How many ConfigMap "data" key/value pairs?</p>
+          <p>How many "data" key/value pairs?</p>
           <TextField
             id="outlined-number"
             label="Number"
@@ -82,7 +82,6 @@ import { spacing } from '@mui/system';
             sx={{width: '200px'}}
             onChange={(e) => props.changeState({...props.cmState, dataNum: e.target.value,})}
           />
-          <h4>Config Map Data</h4>
           {multiFields}
         </form>
         <form className="file-save-buttons">
@@ -90,7 +89,24 @@ import { spacing } from '@mui/system';
           onClick={() => { 
             const obj = configFileGen()
             handleClick('configMap', obj),
-            props.changeState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0})}
+            props.changeState({
+                apiVersion: "",
+                metaName: "",
+                data:[
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""],
+                  ["", ""]
+                ],
+                dataNum: 0
+              })
+            }
           }
           >Create</Button>
         </form>

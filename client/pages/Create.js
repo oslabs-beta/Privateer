@@ -6,14 +6,77 @@ import Deploy from '../components/create/Deploy';
 import Secret from '../components/create/Secret';
 import Service from '../components/create/Service';
 import CenteredTabs from '../components/create/Header';
-import * as actions from '../actions/actions';
+// import * as actions from '../actions/actions';
 
-
+// Renders the Create container
 const Create = props => {
 
-  const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
-  const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0, type: "Opaque"});
-  const [deployState, setDeployState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', port:'', containerName: ''});
+  // Hooks for stateConfigMap.js 
+  const [cmState, setCmState] = useState(
+    {
+      apiVersion: '',
+      metaName: '',
+      data:[
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', '']
+      ],
+      dataNum: 0
+    }
+  );
+
+  // Hooks for Secret.js
+  const [secState, setSecState] = useState(
+    {
+      apiVersion: '',
+      metaName: '',
+      data:[
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', ''],
+        ['', '']
+      ],
+      dataNum: 0,
+      type: "Opaque"
+    }
+  );
+
+  // Hooks for DepServ.js
+  const [deployState, setDeployState] = useState(
+    {
+      apiVersion: '',
+      metaName: '',
+      appName: '',
+      replicas: 0,
+      imageName:'',
+      port:'',
+      containerName: ''
+    }
+  );
+
+  // Hooks for Service.js
+  const [servState, setServState] = useState(
+    {
+      apiVersion: '',
+      metaName: '',
+      appName: '',
+      port: '',
+      targetPort: ''
+    }
+  );
 
   return (
     <Container size="sm" title="create-container">
@@ -54,7 +117,15 @@ const Create = props => {
               />
             </Route>
             <Route path="/create/service">
-              <Service />
+              <Service
+                servApi={servState.apiVersion}
+                servMetaName={servState.metaName}
+                servAppName={servState.appName}
+                servPort={servState.port}
+                servTargetPort={servState.targetPort}
+                servState={servState}
+                servChangeState={setServState}
+              />
             </Route>
           </Switch>
         </Router>
