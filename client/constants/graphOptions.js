@@ -4,9 +4,10 @@ const options = {
     improvedLayout: true,
     hierarchical: {
       enabled: true,
-      direction: 'LR',
+      direction: 'UD',
       sortMethod: 'directed',
       levelSeparation: 200,
+      treeSpacing: 0,
     },
   },
   edges: {

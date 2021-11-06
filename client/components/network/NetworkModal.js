@@ -4,15 +4,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Grow from '@mui/material/Grow';
 import Typography from '@mui/material/Typography';
-import {
-  Divider,
-  Table,
-  TableContainer,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@mui/material';
-import { startCase } from 'lodash';
+import { Divider } from '@mui/material';
+import DenseTable from './DenseTable';
 
 const NetworkModal = ({
   nodeName,
@@ -32,7 +25,6 @@ const NetworkModal = ({
     boxShadow: 24,
     p: 4,
   };
-
   return (
     <div>
       <Modal
@@ -57,31 +49,7 @@ const NetworkModal = ({
               {nodeName}
             </Typography>
             <Divider />
-            {nodeData && (
-              <TableContainer>
-                <Table
-                  sx={{ maxWidth: 400 }}
-                  size="small"
-                  aria-label="a dense table"
-                >
-                  <TableBody>
-                    {Object.entries(nodeData).map(([k, v]) => (
-                      <TableRow
-                        key={k}
-                        sx={{
-                          '&:last-child td, &:last-child th': { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {startCase(k)}
-                        </TableCell>
-                        <TableCell>{v}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            )}
+            {nodeData && <DenseTable nodeData={nodeData} />}
           </Box>
         </Grow>
       </Modal>
