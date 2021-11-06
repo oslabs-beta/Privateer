@@ -21,11 +21,13 @@ const Service = (props) => {
           selector: {
             app: props.servAppName
           },
-          ports: {
-            protocal: ['TCP'],
-            port: props.servPort,
-            targetPort: props.servTargetPort
-          }
+          ports: [
+            {
+            protocal: 'TCP',
+            port: Number(props.servPort),
+            targetPort: Number(props.servTargetPort),
+            }
+          ] 
         },
       }
       return servFile
@@ -77,11 +79,19 @@ const Service = (props) => {
       <form className="file-save-buttons">
         <Button id="create-button" variant="contained"
           onClick={() => { 
-            const servObj = servFileGen()
-            servHandleClick('service', servObj),
-            props.servChangeState({apiVersion: '', metaName: '', appName: '', port: '', targetPort: ''})}
+            const servObj = servFileGen();
+            servHandleClick('service', servObj);
+            props.servChangeState({
+              apiVersion: '', 
+              metaName: '', 
+              appName: '', 
+              port: '', 
+              targetPort: '',
+            });
           }
-          >Create</Button>
+        }>
+          Create
+        </Button>
       </form>
     </Paper>
   )

@@ -111,7 +111,9 @@ const Create = props => {
                 deployMetaName={deployState.metaName}
                 deployAppName={deployState.appName}
                 deployReplicas={deployState.replicas}
-                deployImageName={deployState.imageName}
+                deployImage={deployState.image}
+                deployContainer={deployState.containerName}
+                deployPort={deployState.port}
                 deployState={deployState}
                 changeState={setDeployState}
               />

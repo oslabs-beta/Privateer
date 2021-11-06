@@ -26,28 +26,30 @@ import { spacing } from '@mui/system';
     const multiFields = []
     for (let i = 0; i < props.cmDataNum; i++) {
       multiFields.push(<div key={i} className='data'>
-      <p> ConfigMap Data Key/Value Pair {i + 1} </p>
-      <div>
-        <TextField
-          required
-          id="outlined-required"
-          label="Data Key"
-          value={props.cmData[i][0]}
-          sx={{width: '125px', marginRight: '10px'}}
-          onChange={(e) => {props.cmData[i][0] = e.target.value;
-            props.changeState({...props.cmState, data: props.cmData,})}
-          }
-        />
-        <TextField
-           required
-          id="outlined-required"
-          label="Data Value"
-          value={props.cmData[i][1]}
-          sx={{width: '125px', marginLeft: '10px'}}
-          onChange={(e) => { props.cmData[i][1] = e.target.value;
-            props.changeState({...props.cmState, data: props.cmData,})}
-          }
-        />
+        <p> ConfigMap Data Key/Value Pair {i + 1} </p>
+        <div>
+          <TextField
+            required
+            id="outlined-required"
+            label="Data Key"
+            value={props.cmData[i][0]}
+            sx={{width: '125px', marginRight: '10px'}}
+            onChange={(e) => {
+              props.cmData[i][0] = e.target.value;
+              props.changeState({...props.cmState, data: props.cmData,})}
+            }
+          />
+          <TextField
+            required
+            id="outlined-required"
+            label="Data Value"
+            value={props.cmData[i][1]}
+            sx={{width: '125px', marginLeft: '10px'}}
+            onChange={(e) => { 
+              props.cmData[i][1] = e.target.value;
+              props.changeState({...props.cmState, data: props.cmData,})}
+            }
+          />
         </div>
       </div>)
     }
@@ -87,8 +89,8 @@ import { spacing } from '@mui/system';
         <form className="file-save-buttons">
           <Button id="create-button" variant="contained"
           onClick={() => { 
-            const obj = configFileGen()
-            handleClick('configMap', obj),
+            const obj = configFileGen();
+            handleClick('configMap', obj);
             props.changeState({
                 apiVersion: "",
                 metaName: "",
@@ -104,11 +106,12 @@ import { spacing } from '@mui/system';
                   ["", ""],
                   ["", ""]
                 ],
-                dataNum: 0
-              })
+                dataNum: 0,
+              });
             }
-          }
-          >Create</Button>
+          }>
+            Create
+        </Button>
         </form>
     </Paper>
   )
