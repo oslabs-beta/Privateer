@@ -43,25 +43,20 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
+
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
 
-// Function for saving YAML files to directory
-
+// Function for saving YAML files to user's OS directory
 ipcMain.on('chooseDir', (random, random2, random3) => {
-  // let name = 'isaiah';
-  // console.log("second arg", random2)
-  // console.log("third arg", random3)
+  
   dialog.showSaveDialog({
-    title: 'Select File Path for Save',
+    title: 'Save',
     defaultPath: path.join(__dirname, `/${random2}.yaml`),
     buttonLabel: 'Create',
     filter: [
@@ -73,18 +68,22 @@ ipcMain.on('chooseDir', (random, random2, random3) => {
     properties: []
   }).then(file => {
     console.log(file.canceled);
-
-  if (!file.canceled) {
-    console.log(file.filePath.toString());
-    const doc = new YAML.Document();
-    doc.contents = random3;  
-
-    fs.writeFile(file.filePath.toString(),
+    
+    if (!file.canceled) {
+      console.log(file.filePath.toString());
+      const doc = new YAML.Document();
+      doc.contents = random3;  
+      
+      fs.writeFile(file.filePath.toString(),
       doc.toString(), function(err) {
-      if (err) throw err;
-      console.log('Saved');
+        if (err) throw err;
       });
     }
   }).catch(function(err) {
     console.log(err)})
-});
+  });
+  
+  
+  
+  // In this file you can include the rest of your app's specific main process
+  // code. You can also put them in separate files and require them here.

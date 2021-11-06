@@ -8,8 +8,8 @@ import { spacing } from '@mui/system';
 
   const Secret = (props) => {
     const handleClick = window.electron.ipcRenderer.chooseDir;
-    const configFileGen = () => {
-      const configFile = {
+    const secretFileGen = () => {
+      const secretFile = {
         apiVersion: props.secApi,
         kind: "Secret",
         type: props.secType,
@@ -19,9 +19,9 @@ import { spacing } from '@mui/system';
         data: {},
       }
       for (let i = 0; i < props.secDataNum; i++) {
-        configFile.data[props.secData[i][0]] = props.secData[i][1]
+        secretFile.data[props.secData[i][0]] = props.secData[i][1]
       }
-      return configFile
+      return secretFile
     }
     const multiFields = []
     for (let i = 0; i < props.secDataNum; i++) {
@@ -99,10 +99,30 @@ import { spacing } from '@mui/system';
       <form className="file-save-buttons">
         <Button id="create-button" variant="contained" 
           onClick={() => { 
-            const obj = configFileGen()
+            const obj = secretFileGen()
             handleClick('secret', obj),
-            props.changeState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0, type: 'Opaque'})}
-          }>Create</Button>
+            props.changeState({
+              apiVersion: "",
+              metaName: "", 
+              data:[
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""]
+              ],
+              dataNum: 0, 
+              type: 'Opaque'
+            })
+          }
+        }>
+          Create
+        </Button>
       </form>
     </Paper>
   )

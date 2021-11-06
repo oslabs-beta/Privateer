@@ -8,8 +8,8 @@ import { spacing } from '@mui/system';
 
 const Deploy = (props) => {
   const handleClick = window.electron.ipcRenderer.chooseDir;
-  const configFileGen = () => {
-    const configFile = {
+  const deployFileGen = () => {
+    const deployFile = {
       apiVersion: props.deployApi,
       kind: "Deployment",
       metaData: {
@@ -45,7 +45,7 @@ const Deploy = (props) => {
         },
       },
     }
-    return configFile
+    return deployFile
   }
   return (
     <Paper elevation={0}
@@ -114,10 +114,21 @@ const Deploy = (props) => {
         <form className="file-save-buttons">
           <Button id="create-button" variant="contained" 
             onClick={() => { 
-            const obj = configFileGen()
-            handleClick(props.deployAppName, obj),
-            props.changeState({apiVersion: "", metaName:"", appName:"", replicas:0, image:'', port:'', containerName: ''})}
-          }>Create</Button>
+              const obj = deployFileGen();
+              handleClick(props.deployAppName, obj);
+              props.changeState({
+                apiVersion: "", 
+                metaName:"", 
+                appName:"", 
+                replicas:0, 
+                image:'', 
+                port:'', 
+                containerName: ''
+              });
+            }
+          }>
+            Create
+          </Button>
         </form>
       </Paper>
   )
