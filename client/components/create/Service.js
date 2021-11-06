@@ -34,7 +34,7 @@ const Service = (props) => {
     }
 
   return (
-  <Paper elevation={0} sx={{margin: 5, padding: 13}}>  
+  <Paper elevation={0} className='Paper_form_container'>  
     <form className='tabs'>
       <p>"apiVersion:"</p>
       <TextField
