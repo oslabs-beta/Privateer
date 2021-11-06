@@ -22,9 +22,6 @@ const Monitor = () => {
         <Grid item xs={12} lg={4}>
           <MetricCards url={"http://localhost:3000/d/rYdddlPWj/node-exporter-full?orgId=1&refresh=1m"} />
         </Grid>
-        <Grid item xs={12}>
-          <MetricTable data={monitorData} />
-        </Grid>
       </Grid>
     </Container>
   );
