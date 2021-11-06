@@ -16,7 +16,7 @@ const Create = props => {
   const [depSerState, setDepSerState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', imageTag:'latest', port:''});
 
   return (
-    <Container size="sm" title="create-container">
+    <Container size="sm" title="create-container" className='create_container'>
       <Typography component={'span'} variant={'body2'}>
         <CenteredTabs />
         <Router>

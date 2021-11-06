@@ -9,7 +9,7 @@ import { spacing } from '@mui/system';
 const DepServ = (props) => {
   return (
     <Paper elevation={0}
-      sx={{margin: 10, padding: 5}}>  
+      sx={{margin: 10, padding: 5}} className='Paper_form_container'>  
         <form className='tabs'>
           <p>What is your Dep/Ser Api Version</p>
             <TextField

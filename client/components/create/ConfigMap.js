@@ -37,7 +37,7 @@ import { spacing } from '@mui/system';
       </div>)
     }
     return (
-      <Paper elevation={0} sx={{margin: 10, padding: 5}}>  
+      <Paper elevation={0} sx={{margin: 10, padding: 5}} className='Paper_form_container'>  
         <form className='tabs'>
           <p>What is your ConfigMap Api Version</p>
           <TextField
