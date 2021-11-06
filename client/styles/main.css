@@ -112,10 +112,7 @@ iframe{
 	background-color: #1cb5e0 !important ;
 
 }
-#webApp{
-  height: 500px;
 
-}
 .data_fields{
   display: flex;
   flex-direction: row;
