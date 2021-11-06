@@ -93,12 +93,13 @@ iframe{
 }
 .Paper_form_container {
 	margin: 0 !important;
-	max-height: 700px !important;
-  min-height: 700px !important;
+	max-height: 600px !important;
+  min-height: 600px !important;
   overflow: auto;
 	background-color: #2b3d58 !important;
   border-radius: 0!important;
   margin-top: 1px!important;
+  padding: 0!important;
 
 }
 .create_container {
