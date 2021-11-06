@@ -13,7 +13,7 @@ const Create = props => {
 
   const [cmState, setCmState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0});
   const [secState, setSecState] = useState({apiVersion: "", metaName: "", data:[["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""],["", ""]], dataNum: 0, type: "Opaque"});
-  const [deployState, setDeployState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, imageName:'', port:'', containerName: ''});
+  const [deployState, setDeployState] = useState({apiVersion: "", metaName:"", appName:"", replicas:0, image:'', port:'', containerName: ''});
 
   return (
     <Container size="sm" title="create-container">
@@ -48,7 +48,9 @@ const Create = props => {
                 deployMetaName={deployState.metaName}
                 deployAppName={deployState.appName}
                 deployReplicas={deployState.replicas}
-                deployImageName={deployState.imageName}
+                deployImage={deployState.image}
+                deployContainer={deployState.containerName}
+                deployPort={deployState.port}
                 deployState={deployState}
                 changeState={setDeployState}
               />
