@@ -59,7 +59,7 @@ Privateer is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 - Danni Denmark -[Github](https://github.com/dannid33) | [Linkedin](https://www.linkedin.com/in/dannidenmark/)
 - Conrad Friesen - [Github](https://github.com/dcfriesen) | [Linkedin](https://www.linkedin.com/in/conrad-friesen/)
 - Dustin Jones - [Github](https://github.com/dtjones404) | [Linkedin](https://www.linkedin.com/in/dustin-jones-404/)
-- Kyo Ku - [Github](https://github.com/kk7259951) | [Linkedin](https://www.linkedin.com/in/fillthisinlater/)
+- Kyo Ku - [Github](https://github.com/kk7259951) | [Linkedin](https://www.linkedin.com/in/kyosan-ku/)
 
 ## License:
 
