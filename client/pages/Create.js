@@ -79,7 +79,7 @@ const Create = props => {
   );
 
   return (
-    <Container size="sm" title="create-container">
+    <Container size="sm" title="create-container" className='create_container'>
       <Typography component={'span'} variant={'body2'}>
         <CenteredTabs />
         <Router>
