@@ -11,18 +11,18 @@ import Paper from '@mui/material/Paper';
 interface ServiceInterface {
   servApi: string;
   servMetaName: string;
-  servAppName: number;
-  servPort: number;
-  servTargetPort: number;
-  servState: {};
-  servChangeState: (newState: {}) => void; 
+  servAppName: string;
+  servPort: number | string;
+  servTargetPort: number | string;
+  servState: Object;
+  servChangeState: (newState: any) => void; 
 };
 
-interface ServFileInterface {
+interface ServiceFileInterface {
   apiVersion: string;
   kind: string;
-  metaData: {};
-  spec: {};
+  metaData: Object;
+  spec: Object;
 };
 
 const Service: React.FC <ServiceInterface> = ({
@@ -37,7 +37,7 @@ const Service: React.FC <ServiceInterface> = ({
 
   const servHandleClick = window.electron.ipcRenderer.chooseDir;
     const servFileGen = () => {
-      const servFile: ServFileInterface = {
+      const servFile: ServiceFileInterface = {
         apiVersion: servApi,
         kind: "Service",
         metaData: {

@@ -13,16 +13,16 @@ interface deployInterface {
   deployReplicas: number;
   deployImage: string;
   deployContainer: string;
-  deployPort: number;
-  deployState: {};
-  changeState: (newState: {}) => void; 
+  deployPort: number | string;
+  deployState: Object;
+  changeState: (newState: any) => void; 
 };
 
 interface deployFileInterface {
   apiVersion: string;
   kind: string;
-  metaData: {};
-  spec: {};
+  metaData: Object;
+  spec: Object;
 };
 
 

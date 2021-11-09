@@ -1,7 +1,11 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
-const MetricCards = ({ url }) => {
+interface MetricCardsInterface {
+  url: string;
+}
+
+const MetricCards: React.FC <MetricCardsInterface> = ({ url }) => {
   return (
     <Card>
       <iframe

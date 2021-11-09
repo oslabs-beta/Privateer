@@ -14,7 +14,13 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Box } from '@mui/system';
 
-const DenseTable = ({ nodeData }) => {
+
+interface NodeDataInterface {
+  nodeData: Object;
+};
+
+
+const DenseTable: React.FC <NodeDataInterface> = ({ nodeData }) => {
   return (
     <TableContainer>
       <Table sx={{ maxWidth: 500 }} size="small" aria-label="a dense table">

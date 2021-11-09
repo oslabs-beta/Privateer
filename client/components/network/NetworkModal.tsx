@@ -7,14 +7,38 @@ import Typography from '@mui/material/Typography';
 import { Divider } from '@mui/material';
 import DenseTable from './DenseTable';
 
-const NetworkModal = ({
+interface NetworkModalInterface {
+  nodeName: string;
+  nodeData: Object;
+  pointerLocation: {
+    x: number;
+    y: number;
+  };
+  modalOpen: boolean; 
+  setClosed: (bool: boolean) => void;
+};
+
+interface StyleInterface {
+  position: string;
+  top: number;
+  left: number;
+  width: number;
+  bgcolor: string;
+  color: string;
+  border: string;
+  boxShadow: number;
+  p: number;
+};
+
+const NetworkModal: React.FC <NetworkModalInterface> = ({
   nodeName,
   nodeData,
   pointerLocation,
   modalOpen,
   setClosed,
 }) => {
-  const style = {
+
+  const style: StyleInterface = {
     position: 'absolute',
     top: pointerLocation.y,
     left: pointerLocation.x + 240,
@@ -23,8 +47,9 @@ const NetworkModal = ({
     color: 'white',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 4
   };
+
   return (
     <div>
       <Modal

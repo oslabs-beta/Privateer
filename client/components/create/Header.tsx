@@ -12,7 +12,7 @@ const CenteredTabs = () => {
     (_: any, newValue: any): void
   }
 
-  const handleChange = (_, newValue) => {
+  const handleChange: handleChangeInterface = (_, newValue) => {
     setValue(newValue);
   };
 

@@ -8,9 +8,19 @@ import Service from '../components/create/Service';
 import CenteredTabs from '../components/create/Header';
 // import * as actions from '../actions/actions';
 
-// Renders the Create container
-const Create = () => {
 
+// const Container: OverridableComponent<ContainerTypeMap<{}, "div">>
+
+// interface ContainerInterface {
+//   size: string;
+//   title: string;
+//   className: string;
+
+// };
+
+
+// Renders the Create container
+const Create: React.FC = () => {
   // Hooks for stateConfigMap.js 
   const [cmState, setCmState] = useState(
     {
@@ -62,7 +72,7 @@ const Create = () => {
       appName: '',
       replicas: 0,
       imageName:'',
-      port:'',
+      port: '',
       containerName: ''
     }
   );
@@ -79,7 +89,11 @@ const Create = () => {
   );
 
   return (
-    <Container size="sm" title="create-container" className='create_container'>
+    <Container
+      size="sm"
+      title="create-container"
+      className="create_container" 
+    >
       <Typography component={'span'} variant={'body2'}>
         <CenteredTabs />
         <Router>
@@ -111,7 +125,7 @@ const Create = () => {
                 deployMetaName={deployState.metaName}
                 deployAppName={deployState.appName}
                 deployReplicas={deployState.replicas}
-                deployImage={deployState.image}
+                deployImage={deployState.imageName}
                 deployContainer={deployState.containerName}
                 deployPort={deployState.port}
                 deployState={deployState}

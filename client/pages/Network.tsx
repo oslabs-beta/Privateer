@@ -9,17 +9,17 @@ import options from '../constants/graphOptions';
 import { Container } from '@mui/material';
 import axios from 'axios';
 
-const MonitorGraph = () => {
+const MonitorGraph: React.FC = () => {
   //maps Kubernetes object icons to object kind
   const imgMap = {
     ingress: ingressImg,
     service: serviceImg,
     pod: podImg,
-    deployment: deploymentImg,
+    deployment: deploymentImg
   };
 
   //uses Kubernetes object data to creates vis.js node objects with styling
-  const makeNode = (data) => {
+  const makeNode = (data: any) => {
     return {
       id: data.uid,
       font: {

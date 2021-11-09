@@ -6,13 +6,14 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { spacing } from '@mui/system';
 
+
 interface ConfigMapsInterface {
   cmApi: string;
   cmMetaName: string;
   cmDataNum: number;
   cmData: any[];
   cmState: {};
-  changeState: (newState: {}) => void; 
+  changeState: (newState: any) => void; 
 };
 
 interface ConfigFileInterface {
@@ -21,7 +22,7 @@ interface ConfigFileInterface {
   metaData: {};
   data: any;
 };
-  
+
 const ConfigMap: React.FC <ConfigMapsInterface> = ({ 
   cmApi, 
   cmMetaName, 
