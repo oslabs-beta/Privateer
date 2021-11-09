@@ -9,7 +9,7 @@ import CenteredTabs from '../components/create/Header';
 // import * as actions from '../actions/actions';
 
 // Renders the Create container
-const Create = props => {
+const Create = () => {
 
   // Hooks for stateConfigMap.js 
   const [cmState, setCmState] = useState(

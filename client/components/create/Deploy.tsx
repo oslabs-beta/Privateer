@@ -6,38 +6,68 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { spacing } from '@mui/system';
 
-const Deploy = (props) => {
+interface deployInterface {
+  deployApi: string;
+  deployMetaName: string;
+  deployAppName: string;
+  deployReplicas: number;
+  deployImage: string;
+  deployContainer: string;
+  deployPort: number;
+  deployState: {};
+  changeState: (newState: {}) => void; 
+};
+
+interface deployFileInterface {
+  apiVersion: string;
+  kind: string;
+  metaData: {};
+  spec: {};
+};
+
+
+const Deploy: React.FC<deployInterface> = ({ 
+  deployApi, 
+  deployMetaName, 
+  deployAppName, 
+  deployReplicas, 
+  deployImage, 
+  deployContainer, 
+  deployPort, 
+  deployState, 
+  changeState
+}) => {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const deployFileGen = () => {
-    const deployFile = {
-      apiVersion: props.deployApi,
+    const deployFile: deployFileInterface = {
+      apiVersion: deployApi,
       kind: "Deployment",
       metaData: {
-        name: props.deployMetaName,
+        name: deployMetaName,
         labels: {
-          app: props.deployAppName,
+          app: deployAppName,
         }
       },
       spec: {
-        replicas: Number(props.deployReplicas),
+        replicas: Number(deployReplicas),
         selector: {
           matchLabels: {
-            app: props.deployAppName,
+            app: deployAppName,
           },
         },
         template: {
           metaData: {
             labels: {
-              app: props.deployAppName,
+              app: deployAppName,
             },
           },
           spec: {
             containers: [
               {
-                name: props.deployContainer,
-                image: props.deployImage,
+                name: deployContainer,
+                image: deployImage,
                 ports: [{
-                  containerPort: Number(props.deployPort),
+                  containerPort: Number(deployPort),
                 }],
               },
             ],
@@ -56,67 +86,67 @@ const Deploy = (props) => {
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployApi}
-            onChange={(e) => props.changeState({...props.deployState, apiVersion: e.target.value,})}
+            value={deployApi}
+            onChange={(e) => changeState({...deployState, apiVersion: e.target.value,})}
           />
           <p>What is your Deployment "metadata" name?</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployMetaName}
-            onChange={(e) => props.changeState({...props.deployState, metaName: e.target.value})}
+            value={deployMetaName}
+            onChange={(e) => changeState({...deployState, metaName: e.target.value})}
           />
           <p>What is part of your app are you deploying?</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployAppName}
-            onChange={(e) => props.changeState({...props.deployState, appName: e.target.value})}
+            value={deployAppName}
+            onChange={(e) => changeState({...deployState, appName: e.target.value})}
           />
           <p>How many replicas/deployments would you like to make?</p>
           <TextField
             id="outlined-number"
             label="Number"
             type="number"
-            value={props.deployReplicas}
+            value={deployReplicas}
             InputLabelProps={{shrink: true}}
             InputProps={{ inputProps: { min: 1, max: 10 } }}
             sx={{width: '200px'}}
-            onChange={(e) => props.changeState({...props.deployState, replicas: e.target.value,})}
+            onChange={(e) => changeState({...deployState, replicas: e.target.value,})}
           />
           <p>What is the containers name? (take one from docker)</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployContainer}
-            onChange={(e) => props.changeState({...props.deployState, containerName: e.target.value})}
+            value={deployContainer}
+            onChange={(e) => changeState({...deployState, containerName: e.target.value})}
           />
           <p> What is the image name and tag? (Can be found in DockerHub)</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployImage}
-            onChange={(e) => props.changeState({...props.deployState, image: e.target.value})}
+            value={deployImage}
+            onChange={(e) => changeState({...deployState, image: e.target.value})}
           />
           <p> What port would you like to run your container on?</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.deployPort}
-            onChange={(e) => props.changeState({...props.deployState, port: e.target.value})}
+            value={deployPort}
+            onChange={(e) => changeState({...deployState, port: e.target.value})}
           />     
         </form>
         <form className="file-save-buttons">
           <Button id="create-button" variant="contained" 
             onClick={() => { 
               const obj = deployFileGen();
-              handleClick(props.deployAppName, obj);
-              props.changeState({
+              handleClick(deployAppName, obj);
+              changeState({
                 apiVersion: "", 
                 metaName:"", 
                 appName:"", 

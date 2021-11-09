@@ -6,53 +6,78 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { spacing } from '@mui/system';
 
+interface ConfigMapsInterface {
+  cmApi: string;
+  cmMetaName: string;
+  cmDataNum: number;
+  cmData: any[];
+  cmState: {};
+  changeState: (newState: {}) => void; 
+};
+
+interface ConfigFileInterface {
+  apiVersion: string;
+  kind: string;
+  metaData: {};
+  data: any;
+};
   
-  const ConfigMap = (props) => {
-    const handleClick = window.electron.ipcRenderer.chooseDir;
-    const configFileGen = () => {
-      const configFile = {
-        apiVersion: props.cmApi,
-        kind: "ConfigMap",
-        metaData: {
-          name: props.cmMetaName,
-        },
-        data: {},
-      }
-      for (let i = 0; i < props.cmDataNum; i++) {
-        configFile.data[props.cmData[i][0]] = props.cmData[i][1]
-      }
-      return configFile
+const ConfigMap: React.FC <ConfigMapsInterface> = ({ 
+  cmApi, 
+  cmMetaName, 
+  cmDataNum, 
+  cmData, 
+  cmState, 
+  changeState 
+}) => {
+  const handleClick = window.electron.ipcRenderer.chooseDir;
+  const configFileGen = () => {
+    const configFile: ConfigFileInterface = {
+      apiVersion: cmApi,
+      kind: "ConfigMap",
+      metaData: {
+        name: cmMetaName
+      },
+      data: {}
     }
-    const multiFields = []
-    for (let i = 0; i < props.cmDataNum; i++) {
-      multiFields.push(<div key={i} className='data'>
-        <p> ConfigMap Data Key/Value Pair {i + 1} </p>
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Data Key"
-            value={props.cmData[i][0]}
-            sx={{width: '125px', marginRight: '10px'}}
-            onChange={(e) => {
-              props.cmData[i][0] = e.target.value;
-              props.changeState({...props.cmState, data: props.cmData,})}
-            }
-          />
-          <TextField
-            required
-            id="outlined-required"
-            label="Data Value"
-            value={props.cmData[i][1]}
-            sx={{width: '125px', marginLeft: '10px'}}
-            onChange={(e) => { 
-              props.cmData[i][1] = e.target.value;
-              props.changeState({...props.cmState, data: props.cmData,})}
-            }
-          />
-        </div>
-      </div>)
+    for (let i = 0; i < cmDataNum; i++) {
+      configFile.data[cmData[i][0]] = cmData[i][1];
     }
+    return configFile;
+  }
+  const multiFields = [];
+
+  for (let i = 0; i < cmDataNum; i++) {
+    multiFields.push(
+      <div key={i} className='data'>
+      <p> ConfigMap Data Key/Value Pair {i + 1} </p>
+      <div>
+        <TextField
+          required
+          id="outlined-required"
+          label="Data Key"
+          value={cmData[i][0]}
+          sx={{width: '125px', marginRight: '10px'}}
+          onChange={(e) => {
+            cmData[i][0] = e.target.value;
+            changeState({...cmState, data: cmData})}
+          }
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Data Value"
+          value={cmData[i][1]}
+          sx={{width: '125px', marginLeft: '10px'}}
+          onChange={(e) => { 
+            cmData[i][1] = e.target.value;
+            changeState({...cmState, data: cmData})}
+          }
+        />
+      </div>
+      </div>
+    );
+  }
 
     return (
       <Paper elevation={0} sx={{margin: 10, padding: 5}} className='Paper_form_container'>  
@@ -62,27 +87,27 @@ import { spacing } from '@mui/system';
             required
             id="outlined-required"
             label="Required?"
-            value={props.cmApi}
-            onChange={(e) => props.changeState({...props.cmState, apiVersion: e.target.value,})}        
+            value={cmApi}
+            onChange={(e) => changeState({...cmState, apiVersion: e.target.value,})}        
           />
           <p>Metadata "name:"</p>
           <TextField
             required
             id="outlined-required"
             label="Required?"
-            value={props.cmMetaName}
-            onChange={(e) => props.changeState({...props.cmState, metaName: e.target.value,})}
+            value={cmMetaName}
+            onChange={(e) => changeState({...cmState, metaName: e.target.value,})}
           />
           <p>How many "data" key/value pairs?</p>
           <TextField
             id="outlined-number"
             label="Number"
             type="number"
-            value={props.cmDataNum}
+            value={cmDataNum}
             InputLabelProps={{shrink: true}}
             InputProps={{ inputProps: { min: 1, max: 10 } }}
             sx={{width: '200px'}}
-            onChange={(e) => props.changeState({...props.cmState, dataNum: e.target.value,})}
+            onChange={(e) => changeState({...cmState, dataNum: e.target.value,})}
           />
           {multiFields}
         </form>
@@ -91,20 +116,20 @@ import { spacing } from '@mui/system';
           onClick={() => { 
             const obj = configFileGen();
             handleClick('configMap', obj);
-            props.changeState({
-                apiVersion: "",
-                metaName: "",
+            changeState({
+                apiVersion: '',
+                metaName: '',
                 data:[
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""],
-                  ["", ""]
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', ''],
+                  ['', '']
                 ],
                 dataNum: 0,
               });

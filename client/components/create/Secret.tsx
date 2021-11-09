@@ -6,25 +6,52 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { spacing } from '@mui/system';
 
-  const Secret = (props) => {
+interface SecretInterface {
+  secApi: string;
+  secMetaName: string;
+  secDataNum: number;
+  secData: any[];
+  secType: string;
+  secState: {};
+  changeState: (newState: {}) => void; 
+};
+
+interface SecretFileInterface {
+  apiVersion: string;
+  kind: string;
+  type: string;
+  metaData: {};
+  data: any;
+};
+
+
+  const Secret: React.FC <SecretInterface> = ({
+    secApi,
+    secMetaName,
+    secDataNum,
+    secData,
+    secType,
+    secState
+    changeState
+  }) => {
     const handleClick = window.electron.ipcRenderer.chooseDir;
     const secretFileGen = () => {
-      const secretFile = {
-        apiVersion: props.secApi,
+      const secretFile: SecretFileInterface = {
+        apiVersion: secApi,
         kind: "Secret",
-        type: props.secType,
+        type: secType,
         metaData: {
-          name: props.secMetaName,
+          name: secMetaName,
         },
         data: {},
       }
-      for (let i = 0; i < props.secDataNum; i++) {
-        secretFile.data[props.secData[i][0]] = props.secData[i][1]
+      for (let i = 0; i < secDataNum; i++) {
+        secretFile.data[secData[i][0]] = secData[i][1]
       }
       return secretFile
     }
     const multiFields = []
-    for (let i = 0; i < props.secDataNum; i++) {
+    for (let i = 0; i < secDataNum; i++) {
       console.log()
       multiFields.push(<div key={i} className='data'>
         <p> "Secret" Data Key/Value Pair {i + 1} </p>
@@ -33,23 +60,23 @@ import { spacing } from '@mui/system';
             required
             id="outlined-required"
             label="Data Key"
-            value={props.secData[i][0]}
+            value={secData[i][0]}
             sx={{width: '125px', marginRight: '10px'}}
             onChange={(e) => {
-              props.secData[i][0] = e.target.value;
-              props.changeState(
-                { ...props.secState, data: props.secData,})}
+              secData[i][0] = e.target.value;
+              changeState(
+                { ...secState, data: secData,})}
             }
           />
           <TextField
             required
             id="outlined-required"
             label="Data Value"
-            value={props.secData[i][1]}
+            value={secData[i][1]}
             sx={{width: '125px', marginLeft: '10px'}}
             onChange={(e) => { 
-              props.secData[i][1] = e.target.value;
-              props.changeState({...props.secState, data: props.secData,})}
+              secData[i][1] = e.target.value;
+              changeState({...secState, data: secData,})}
             }
           />
           </div>
@@ -63,35 +90,35 @@ import { spacing } from '@mui/system';
           required
           id="outlined-required"
           label="Required?"
-          value={props.secApi}
-          onChange={(e) => props.changeState({...props.secState, apiVersion: e.target.value,})}   
+          value={secApi}
+          onChange={(e) => changeState({...secState, apiVersion: e.target.value,})}   
         />
         <p>What is your "Secret metadata" name?</p>
         <TextField
           required
           id="outlined-required"
           label="Required?"
-          value={props.secMetaName}
-          onChange={(e) => props.changeState({...props.secState, metaName: e.target.value,})}
+          value={secMetaName}
+          onChange={(e) => changeState({...secState, metaName: e.target.value,})}
         />
         <p>What is your "Secret" type?</p>
         <TextField
           required
           id="outlined-required"
           label="Required?"
-          value={props.secType}
-          onChange={(e) => props.changeState({...props.secState, type: e.target.value})}
+          value={secType}
+          onChange={(e) => changeState({...secState, type: e.target.value})}
         />
         <p>How many "Secret data" key/value pairs?</p>
         <TextField
           id="outlined-number"
           label="Number"
           type="number"
-          value={props.secDataNum}
+          value={secDataNum}
           InputLabelProps={{shrink: true}}
           InputProps={{ inputProps: { min: 1, max: 10 } }}
           sx={{width: '200px'}}
-          onChange={(e) => props.changeState({...props.secState, dataNum: e.target.value,})}
+          onChange={(e) => changeState({...secState, dataNum: e.target.value,})}
         />
         <h4>"Secret" Data</h4>
         {multiFields}
@@ -101,7 +128,7 @@ import { spacing } from '@mui/system';
           onClick={() => { 
             const obj = secretFileGen()
             handleClick('secret', obj),
-            props.changeState({
+            changeState({
               apiVersion: "",
               metaName: "", 
               data:[

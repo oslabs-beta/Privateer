@@ -7,30 +7,56 @@ import Paper from '@mui/material/Paper';
 // import Box from '@mui/material/Box';
 // import { spacing } from '@mui/system';
 
-const Service = (props) => {
+
+interface ServiceInterface {
+  servApi: string;
+  servMetaName: string;
+  servAppName: number;
+  servPort: number;
+  servTargetPort: number;
+  servState: {};
+  servChangeState: (newState: {}) => void; 
+};
+
+interface ServFileInterface {
+  apiVersion: string;
+  kind: string;
+  metaData: {};
+  spec: {};
+};
+
+const Service: React.FC <ServiceInterface> = ({
+  servApi,
+  servMetaName,
+  servAppName,
+  servPort,
+  servTargetPort,
+  servState,
+  servChangeState
+}) => {
 
   const servHandleClick = window.electron.ipcRenderer.chooseDir;
     const servFileGen = () => {
-      const servFile = {
-        apiVersion: props.servApi,
+      const servFile: ServFileInterface = {
+        apiVersion: servApi,
         kind: "Service",
         metaData: {
-          name: props.servMetaName
+          name: servMetaName
         },
         spec: {
           selector: {
-            app: props.servAppName
+            app: servAppName
           },
           ports: [
             {
             protocal: 'TCP',
-            port: Number(props.servPort),
-            targetPort: Number(props.servTargetPort),
+            port: Number(servPort),
+            targetPort: Number(servTargetPort),
             }
           ] 
         },
       }
-      return servFile
+      return servFile;
     }
 
   return (
@@ -41,39 +67,39 @@ const Service = (props) => {
         required
         id="outlined-required"
         label="Value"
-        value={props.servApi}
-        onChange={(e) => props.servChangeState({...props.servState, apiVersion: e.target.value})}   
+        value={servApi}
+        onChange={(e) => servChangeState({...servState, apiVersion: e.target.value})}   
       />
       <p>Metadata "name:"</p>
       <TextField
         required
         id="outlined-required"
         label="Value"
-        value={props.servMetaName}
-        onChange={(e) => props.servChangeState({...props.servState, metaName: e.target.value})}
+        value={servMetaName}
+        onChange={(e) => servChangeState({...servState, metaName: e.target.value})}
       />
       <p>App "name:"</p>
       <TextField
         required
         id="outlined-required"
         label="Value"
-        value={props.servAppName}
-        onChange={(e) => props.servChangeState({...props.servState, appName: e.target.value})}
+        value={servAppName}
+        onChange={(e) => servChangeState({...servState, appName: e.target.value})}
       />
       <p>"port:"</p>
       <TextField
         id="outlined-required"
         label="Value"
-        value={props.servPort}
-        onChange={(e) => props.servChangeState({...props.servState, port: e.target.value})}
+        value={servPort}
+        onChange={(e) => servChangeState({...servState, port: e.target.value})}
       />
       <h4>"targetPort:"</h4>
       <TextField
         required
         id="outlined-required"
         label="Value"
-        value={props.servTargetPort}
-        onChange={(e) => props.servChangeState({...props.servState, targetPort: e.target.value})}
+        value={servTargetPort}
+        onChange={(e) => servChangeState({...servState, targetPort: e.target.value})}
       />
     </form>
       <form className="file-save-buttons">
@@ -81,7 +107,7 @@ const Service = (props) => {
           onClick={() => { 
             const servObj = servFileGen();
             servHandleClick('service', servObj);
-            props.servChangeState({
+            servChangeState({
               apiVersion: '', 
               metaName: '', 
               appName: '', 
