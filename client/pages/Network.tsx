@@ -9,9 +9,17 @@ import options from '../constants/graphOptions';
 import { Container } from '@mui/material';
 import axios from 'axios';
 
+interface imgMapInterface {
+  ingress: string;
+  service: string;
+  pod: string;
+  deployment: string;
+};
+
 const MonitorGraph: React.FC = () => {
   //maps Kubernetes object icons to object kind
-  const imgMap = {
+  
+  const imgMap: imgMapInterface = {
     ingress: ingressImg,
     service: serviceImg,
     pod: podImg,
