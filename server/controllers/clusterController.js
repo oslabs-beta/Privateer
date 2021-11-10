@@ -53,4 +53,21 @@ clusterController.getDeployments = async (req, res, next) => {
   }
 };
 
+clusterController.getIngresses = async (req, res, next) => {
+  try {
+    const kc = new k8s.KubeConfig();
+    kc.loadFromDefault();
+
+    const k8sApi = kc.makeApiClient(k8s.ExtensionsV1beta1Api);
+
+    res.locals.ingresses = await k8sApi.listNamespacedIngress('default');
+    next();
+  } catch (err) {
+    return next({
+      log: `clusterController.getIngresses ERROR: ${err}`,
+      message: { err: 'An error occurred' },
+    });
+  }
+};
+
 module.exports = clusterController;

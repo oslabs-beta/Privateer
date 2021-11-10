@@ -151,6 +151,23 @@ const MonitorGraph = () => {
         ports,
       };
     });
+    const ingressResponse = await axios.get('/api/cluster/ingresses');
+    serviceResponse.data.body.items.map((ingress) => {
+      const {
+        metadata: { name, uid, creationTimestamp: created },
+        spec: { ingressClassName: className, rules: ruleData },
+      } = ingress;
+
+      nodes.push(uid);
+      nodeData[uid] = {
+        kind: 'ingress',
+        name,
+        uid,
+        created,
+        className,
+        rules,
+      };
+    });
     setState({
       ...state,
       nodeData,

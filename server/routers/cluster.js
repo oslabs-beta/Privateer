@@ -14,4 +14,8 @@ router.get('/deployments', clusterController.getDeployments, (req, res) => {
   res.status(200).json(res.locals.deployments);
 });
 
+router.get('/ingresses', clusterController.getIngresses, (req, res) => {
+  res.status(200).json(res.locals.ingresses);
+});
+
 module.exports = router;
