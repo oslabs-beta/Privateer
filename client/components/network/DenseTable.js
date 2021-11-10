@@ -30,7 +30,7 @@ const DenseTable = ({ nodeData }) => {
                       '&:last-child td, &:last-child th': { border: 0 },
                     }}
                   >
-                    <TableCell>{startCase(k)}</TableCell>
+                    <TableCell>{/[.\/]/.test(k) ? k : startCase(k)}</TableCell>
                     <TableCell>
                       <IconButton
                         aria-label="expand row"
@@ -52,7 +52,7 @@ const DenseTable = ({ nodeData }) => {
                       colSpan={2}
                     >
                       <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 0 }}>
+                        <Box sx={{ margin: 0, border: 0 }}>
                           <DenseTable nodeData={v} />
                         </Box>
                       </Collapse>
@@ -69,7 +69,7 @@ const DenseTable = ({ nodeData }) => {
                   }}
                 >
                   <TableCell component="th" scope="row">
-                    {startCase(k)}
+                    {/[.\/]/.test(k) ? k : startCase(k)}
                   </TableCell>
                   <TableCell>{v}</TableCell>
                 </TableRow>

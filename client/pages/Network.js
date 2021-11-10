@@ -23,11 +23,11 @@ const MonitorGraph = () => {
     return {
       id: data.uid,
       font: {
-        color: 'white',
+        color: 'black',
         size: 22,
         face: 'robato',
         strokeWidth: 3,
-        strokeColor: 'black',
+        strokeColor: 'white',
       },
       label: data.name,
       shape: 'image',
@@ -71,6 +71,7 @@ const MonitorGraph = () => {
     const nodes = [];
     const edges = [];
     const nodeData = {};
+    const serviceData = {};
     const podResponse = await axios.get('/api/cluster/pods');
     podResponse.data.body.items.map((pod) => {
       const {
@@ -140,6 +141,7 @@ const MonitorGraph = () => {
             edges.push({ from: uid, to: node.uid });
         });
       }
+      serviceData[name] = uid;
       nodes.push(uid);
       nodeData[uid] = {
         kind: 'service',
@@ -152,11 +154,25 @@ const MonitorGraph = () => {
       };
     });
     const ingressResponse = await axios.get('/api/cluster/ingresses');
-    serviceResponse.data.body.items.map((ingress) => {
+    ingressResponse.data.body.items.map((ingress) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: { ingressClassName: className, rules: ruleData },
       } = ingress;
+
+      const rules = {};
+      ruleData.forEach((rule) => {
+        rules[rule.host] = {};
+        rule.http.paths.forEach((pathData) => {
+          const {
+            backend: { serviceName, servicePort },
+            path,
+            pathType,
+          } = pathData;
+          edges.push({ from: uid, to: serviceData[serviceName] });
+          rules[rule.host][path] = { pathType, serviceName, servicePort };
+        });
+      });
 
       nodes.push(uid);
       nodeData[uid] = {
@@ -178,7 +194,7 @@ const MonitorGraph = () => {
   const { graph, events, selectedNode, modalOpen, pointerLocation } = state;
   const { name: nodeName, ...nodeData } = selectedNode;
   return (
-    <Container maxWidth="false" title="network-container">
+    <Container maxWidth="true" title="network-container">
       <NetworkModal
         nodeName={nodeName}
         nodeData={nodeData}
