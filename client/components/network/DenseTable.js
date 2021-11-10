@@ -23,7 +23,7 @@ const DenseTable = ({ nodeData }) => {
             if (typeof v === 'object') {
               const [open, setOpen] = useState(false);
               return (
-                <>
+                <React.Fragment key={k}>
                   <TableRow
                     key={k}
                     sx={{
@@ -58,7 +58,7 @@ const DenseTable = ({ nodeData }) => {
                       </Collapse>
                     </TableCell>
                   </TableRow>
-                </>
+                </React.Fragment>
               );
             } else {
               return (
