@@ -9,17 +9,9 @@ import options from '../constants/graphOptions';
 import { Container } from '@mui/material';
 import axios from 'axios';
 
-interface imgMapInterface {
-  ingress: string;
-  service: string;
-  pod: string;
-  deployment: string;
-};
-
-const MonitorGraph: React.FC = () => {
+const MonitorGraph = () => {
   //maps Kubernetes object icons to object kind
-  
-  const imgMap: imgMapInterface = {
+  const imgMap = {
     ingress: ingressImg,
     service: serviceImg,
     pod: podImg,
@@ -27,7 +19,7 @@ const MonitorGraph: React.FC = () => {
   };
 
   //uses Kubernetes object data to creates vis.js node objects with styling
-  const makeNode = (data: any) => {
+  const makeNode = (data) => {
     return {
       id: data.uid,
       font: {
@@ -45,7 +37,7 @@ const MonitorGraph: React.FC = () => {
       shadow: {
         enabled: true,
       },
-      image: imgMap[data.kind],
+      image: imgMap[data.kind]
     };
   };
 
@@ -76,17 +68,21 @@ const MonitorGraph: React.FC = () => {
   });
 
   useEffect(async () => {
-    const nodes = [];
-    const edges = [];
+    const nodes: [] = [];
+    const edges: [] = [];
     const nodeData = {};
+
     const podResponse = await axios.get('/api/cluster/pods');
+
     podResponse.data.body.items.map((pod) => {
       const {
         metadata: { name, uid, creationTimestamp: created, labels },
         spec: { containers: containerData },
         status: { phase: status, hostIP, podIP },
       } = pod;
+
       const containers = {};
+
       containerData.forEach((container) => {
         const { name, image } = container;
         containers[name] = { image };
