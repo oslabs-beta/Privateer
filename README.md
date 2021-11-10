@@ -30,12 +30,16 @@ Privateer is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 
 - If you don't have Prometheus and Grafana Installed:
 
-
   - Create a new `Monitoring` namespace using the command: `kubectl create namespace monitoring` 
   - Run the command `kubectl get pods --namespace=monitoring` and note the names of your Prometheus and Grafana pods.
   - Navigate to the Privateer root directory in your terminal and run the command `
   - Run the command `kubectl port-forward [YOUR PROMETHEUS POD NAME] 9090:9090 -n monitoring` to make your Prometheus pod accessible on port 9090.
   - Run the command `kubectl port-forward [YOUR GRAFANA POD NAME] 3000:3000 -n monitoring`to make your Grafana pod accessible on port 3000.
+
+- Do first thing
+- Do second thing
+- Do third thing
+- Do fourth thing
 
 
 
