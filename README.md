@@ -18,9 +18,37 @@
 
 Privateer is a lightweight Kubernetes prototyping and monitoring tool developed in Electron.js.
 
+## Create Page:
+ 
+Quickly create configuration files for a new Kubernetes cluster using a simple form!
+
 <div align="center">
 
-  ![placeholder](https://user-images.githubusercontent.com/69579929/140405316-69c92b10-ec89-403a-a030-fa44edc276d3.gif)
+ ![create3](https://user-images.githubusercontent.com/69579929/141355761-e12df616-c1a0-4c34-86f6-d3f6a913726f.gif)
+ 
+</div>
+
+## Monitor Page:
+
+Monitor your Kubernetes cluster directly from this application using our integrated Grafana dashboard!  Already have Grafana installed?  Great!  Privateer is fully- compatible with your existing setup.  If not, get Promethus and Grafana running quickly using our provided configuration files.
+
+<div align="center">
+
+![network](https://user-images.githubusercontent.com/69579929/141356994-c5279563-5c96-4c66-b771-cedc7fe10c25.gif)
+ 
+ </div>
+ 
+## Network Page:
+
+Automatically visualize your entire Kubernetes cluster architecture by generating an interactive topological graph!  Click on Kubernetes objects to display extensive configuration details.
+
+<div align="center">
+ 
+![network](https://user-images.githubusercontent.com/69579929/141356994-c5279563-5c96-4c66-b771-cedc7fe10c25.gif)
+ 
+</div>
+
+
 
  </div>
 
@@ -28,18 +56,18 @@ Privateer is a lightweight Kubernetes prototyping and monitoring tool developed 
 
 ### Installation
 
-- If you don't have Prometheus and Grafana Installed:
+- Clone this repository to the machine running your Kubernetes cluster.
+- Use of the Monitoring dashboard requires localhost access to Grafana on port 3000.  If you don't have Prometheus and Grafana Installed, simply do the following:
 
   - Create a new `Monitoring` namespace using the command: `kubectl create namespace monitoring` 
-  - Run the command `kubectl get pods --namespace=monitoring` and note the names of your Prometheus and Grafana pods.
   - Navigate to the Privateer root directory in your terminal and run the command `kubectl apply -f infra` to install Prometheus and Grafana in your cluster.
+  - Run the command `kubectl get pods --namespace=monitoring` and note the names of your Prometheus and Grafana pods.
   - Run the command `kubectl port-forward [YOUR PROMETHEUS POD NAME] 9090:9090 -n monitoring` to make your Prometheus pod accessible on port 9090.
-  - Run the command `kubectl port-forward [YOUR GRAFANA POD NAME] 3000:3000 -n monitoring`to make your Grafana pod accessible on port 3000.
+  - Run the command `kubectl port-forward [YOUR GRAFANA POD NAME] 3000:3000 -n monitoring` to make your Grafana pod accessible on port 3000.
 
-- Do first thing
-- Do second thing
-- Do third thing
-- Do fourth thing
+- `npm install`
+- `npm start`
+
 
 
 
