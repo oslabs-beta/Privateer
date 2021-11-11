@@ -6,7 +6,7 @@ const options = {
       enabled: true,
       direction: 'UD',
       sortMethod: 'directed',
-      levelSeparation: 200,
+      levelSeparation: 280,
       treeSpacing: 0,
     },
   },
@@ -32,7 +32,7 @@ const options = {
       enabled: true,
     },
     hierarchicalRepulsion: {
-      nodeDistance: 180,
+      nodeDistance: 280,
     },
   },
 };

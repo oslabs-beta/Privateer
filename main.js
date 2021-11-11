@@ -6,8 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const YAML = require('yaml');
 
-
-const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3000;
+const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3070;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -43,7 +42,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
@@ -51,39 +49,38 @@ app.on('activate', () => {
   }
 });
 
-
 // Function for saving YAML files to user's OS directory
 ipcMain.on('chooseDir', (random, random2, random3) => {
-  
-  dialog.showSaveDialog({
-    title: 'Save',
-    defaultPath: path.join(__dirname, `/${random2}.yaml`),
-    buttonLabel: 'Create',
-    filter: [
-      {
-        name: 'YAML Files',
-        extensions: ['yaml']
-      },
-    ],
-    properties: []
-  }).then(file => {
-    console.log(file.canceled);
-    
-    if (!file.canceled) {
-      console.log(file.filePath.toString());
-      const doc = new YAML.Document();
-      doc.contents = random3;  
-      
-      fs.writeFile(file.filePath.toString(),
-      doc.toString(), function(err) {
-        if (err) throw err;
-      });
-    }
-  }).catch(function(err) {
-    console.log(err)})
-  });
-  
-  
-  
-  // In this file you can include the rest of your app's specific main process
-  // code. You can also put them in separate files and require them here.
+  dialog
+    .showSaveDialog({
+      title: 'Save',
+      defaultPath: path.join(__dirname, `/${random2}.yaml`),
+      buttonLabel: 'Create',
+      filter: [
+        {
+          name: 'YAML Files',
+          extensions: ['yaml'],
+        },
+      ],
+      properties: [],
+    })
+    .then((file) => {
+      console.log(file.canceled);
+
+      if (!file.canceled) {
+        console.log(file.filePath.toString());
+        const doc = new YAML.Document();
+        doc.contents = random3;
+
+        fs.writeFile(file.filePath.toString(), doc.toString(), function (err) {
+          if (err) throw err;
+        });
+      }
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+});
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.
