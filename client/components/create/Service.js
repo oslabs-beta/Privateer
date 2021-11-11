@@ -35,7 +35,7 @@ const Service = (props) => {
 
   return (
   <Paper elevation={0} className='Paper_form_container'>  
-    <form className='tabs'>
+    <form title='service' className='tabs'>
       <p>"apiVersion:"</p>
       <TextField
         required
@@ -90,7 +90,7 @@ const Service = (props) => {
             });
           }
         }>
-          Create
+          create
         </Button>
       </form>
     </Paper>
