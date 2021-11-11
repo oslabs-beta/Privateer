@@ -1,5 +1,6 @@
 import Graph from 'react-graph-vis';
 import React, { useState, useEffect } from 'react';
+import namespaceImg from '../assets/k8_icons/ns-128.png';
 import podImg from '../assets/k8_icons/pod-128.png';
 import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
@@ -12,9 +13,10 @@ import { Container } from '@mui/material';
 const MonitorGraph = () => {
   //maps Kubernetes object icons to object kind
   const imgMap = {
+    namespace: namespaceImg,
+    pod: podImg,
     ingress: ingressImg,
     service: serviceImg,
-    pod: podImg,
     deployment: deploymentImg,
   };
 
@@ -29,7 +31,7 @@ const MonitorGraph = () => {
         strokeWidth: 3,
         strokeColor: 'white',
       },
-      label: data.name,
+      label: data.name.length > 18 ? data.name.slice(0, 20) + '...' : data.name,
       shape: 'image',
       shapeProperties: {
         useImageSize: true,

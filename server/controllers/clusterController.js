@@ -9,7 +9,7 @@ clusterController.getNamespaces = async (req, res, next) => {
 
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-    res.locals.namespaces = await k8sApi.listNamespaces('default');
+    res.locals.namespaces = await k8sApi.listNamespace();
     next();
   } catch (err) {
     return next({
@@ -26,7 +26,7 @@ clusterController.getPods = async (req, res, next) => {
 
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-    res.locals.pods = await k8sApi.listNamespacedPod('default');
+    res.locals.pods = await k8sApi.listNamespacedPod(req.params.namespace);
     next();
   } catch (err) {
     return next({
@@ -43,7 +43,9 @@ clusterController.getServices = async (req, res, next) => {
 
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-    res.locals.services = await k8sApi.listNamespacedService('default');
+    res.locals.services = await k8sApi.listNamespacedService(
+      req.params.namespace
+    );
     next();
   } catch (err) {
     return next({
@@ -60,7 +62,9 @@ clusterController.getDeployments = async (req, res, next) => {
 
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
-    res.locals.deployments = await k8sApi.listNamespacedDeployment('default');
+    res.locals.deployments = await k8sApi.listNamespacedDeployment(
+      req.params.namespace
+    );
     next();
   } catch (err) {
     return next({
@@ -77,7 +81,9 @@ clusterController.getIngresses = async (req, res, next) => {
 
     const k8sApi = kc.makeApiClient(k8s.ExtensionsV1beta1Api);
 
-    res.locals.ingresses = await k8sApi.listNamespacedIngress('default');
+    res.locals.ingresses = await k8sApi.listNamespacedIngress(
+      req.params.namespace
+    );
     next();
   } catch (err) {
     return next({
