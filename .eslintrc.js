@@ -15,8 +15,14 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'default-param-last': 'off',
     'react/prop-types': 'off',
     'react/button-has-type': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'function-declaration' },
+    ],
   },
 };

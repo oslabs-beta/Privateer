@@ -16,13 +16,13 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/kmlogo.png';
 import k8Logo from '../assets/k8logo.png';
 
-const styles = (theme) => ({
+const styles = () => ({
   listItem: {},
 });
 
 const drawerWidth = 240;
 
-const Sidenav = () => {
+function Sidenav() {
   return (
     <Drawer
       variant="permanent"
@@ -89,6 +89,6 @@ const Sidenav = () => {
       </Toolbar>
     </Drawer>
   );
-};
+}
 
 export default Sidenav;

@@ -1,131 +1,125 @@
 html,
 body,
 #root {
-	/* background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%); */
-	background-color: #E0F4FF;
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  /* background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%); */
+  background-color: #e0f4ff;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png"); */
 }
 
 #layout {
-	display: flex;
-	height: 100%;
+  display: flex;
+  height: 100%;
 }
 
 #main {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #create-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .tabs {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
 }
 
 #multi-fields {
-	margin: 5px;
+  margin: 5px;
 }
 
 #save-button {
-	/* position: fixed; */
-	bottom: 5%;
-	width: 25%;
+  /* position: fixed; */
+  bottom: 5%;
+  width: 25%;
 }
 
 #create-button {
-	/* display: flex; */
-	width: 25%;
-	bottom: 5%;
-	margin: 25px;
-	text-align: center;
+  /* display: flex; */
+  width: 25%;
+  bottom: 5%;
+  margin: 25px;
+  text-align: center;
 }
 
 .file-save-buttons {
-	display: flex;
-	flex-direction: table;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: table;
+  justify-content: center;
+  align-items: center;
 }
 /* material ui classnames */
 .MuiBox-root {
-	border-radius: 0 !important;
-	background-color: #2b3d58 !important;
-  border:none!important
+  border-radius: 0 !important;
+  background-color: #2b3d58 !important;
+  border: none !important;
 }
 .MuiDrawer-paperAnchorDockedLeft {
-	background-color: #2b3d58 !important;
+  background-color: #2b3d58 !important;
 }
 .Mui-selected {
-	color: #1cb5e0 !important;
+  color: #1cb5e0 !important;
 }
 .MuiTabs-indicator {
-	background-color: #1cb5e0 !important ;
+  background-color: #1cb5e0 !important ;
 }
 .MuiTabs-root {
-	padding-left: 20px;
-	padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
-.MuiToolbar-gutters:first-child{
-  filter: invert(58%) sepia(87%) saturate(873%) hue-rotate(153deg) brightness(93%) contrast(88%);
+.MuiToolbar-gutters:first-child {
+  filter: invert(58%) sepia(87%) saturate(873%) hue-rotate(153deg)
+    brightness(93%) contrast(88%);
 }
 
 /* end material ui classnames */
 /* //////////////////////////// */
 /* custom classnames */
-iframe{
+iframe {
   background-color: #2b3d58 !important;
-
 }
 .Paper_form_container {
-	margin: 0 !important;
-	max-height: 600px !important;
+  margin: 0 !important;
+  max-height: 600px !important;
   min-height: 600px !important;
   overflow: auto;
-	background-color: #2b3d58 !important;
-  border-radius: 0!important;
-  margin-top: 1px!important;
-  padding: 0!important;
-
+  background-color: #2b3d58 !important;
+  border-radius: 0 !important;
+  margin-top: 1px !important;
+  padding: 0 !important;
 }
 .create_container {
-	margin-top: auto;
-	margin-bottom: auto;
-
- 
-
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.file-save-buttons button{
-	background-color: #1cb5e0 !important ;
-
+.file-save-buttons button {
+  background-color: #1cb5e0 !important ;
 }
 
-.data_fields{
+.data_fields {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
-.MuiPaper-elevation{
+.MuiPaper-elevation {
   background-color: #2b3d58 !important;
-
 }
-td,th{
-  border-bottom: 1px solid white!important;
-
+td,
+th {
+  border-bottom: 1px solid white !important;
 }
 
 /* /////////////////////////// */

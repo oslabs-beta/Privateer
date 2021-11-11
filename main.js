@@ -1,8 +1,6 @@
-const { app, BrowserWindow, ipcMain, electron, dialog } = require('electron');
-// const { electron } = require('electron');
-// const { ipcRenderer } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+
 const path = require('path');
-// const fs = require('electron').remote.require('fs');
 const fs = require('fs');
 const YAML = require('yaml');
 
@@ -72,12 +70,12 @@ ipcMain.on('chooseDir', (random, random2, random3) => {
         const doc = new YAML.Document();
         doc.contents = random3;
 
-        fs.writeFile(file.filePath.toString(), doc.toString(), function (err) {
+        fs.writeFile(file.filePath.toString(), doc.toString(), (err) => {
           if (err) throw err;
         });
       }
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log(err);
     });
 });

@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { startCase } from 'lodash';
 
-const MetricTable = ({ data }) => {
+function MetricTable({ data }) {
   return (
     <Card>
       <CardContent>
@@ -34,8 +34,8 @@ const MetricTable = ({ data }) => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     {/* <TableCell component="th" scope="row">
-                    {row.status}
-                  </TableCell> */}
+                        {row.status}
+                      </TableCell> */}
                     {Object.values(row).map((cell, i) => (
                       <TableCell key={i}>{cell}</TableCell>
                     ))}
@@ -47,6 +47,6 @@ const MetricTable = ({ data }) => {
       </CardContent>
     </Card>
   );
-};
+}
 
 export default MetricTable;

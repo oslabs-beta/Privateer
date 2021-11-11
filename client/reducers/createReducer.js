@@ -1,8 +1,8 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  cmApi: "",
-  cmMetaName: "",
+  cmApi: '',
+  cmMetaName: '',
   cmDataNum: 0,
   cmData: {},
 };
@@ -17,21 +17,15 @@ const createReducer = (state = initialState, action) => {
     //     newLocation: action.payload,
     //   };
     case types.CONFIG_SAVE: {
-      
-      return {
-        
-      }
+      return {};
     }
 
     case types.ADD_DATA: {
-      
       return {
         ...state,
         cmDataNum: action.payload,
-      }
+      };
     }
-      
-      
 
     default:
       return state;

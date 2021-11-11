@@ -1,6 +1,5 @@
-const clusterController = require('../controllers/clusterController');
-
 const router = require('express').Router();
+const clusterController = require('../controllers/clusterController');
 
 router.get('/pods', clusterController.getPods, (req, res) => {
   res.status(200).json(res.locals.pods);

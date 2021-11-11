@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import React from 'react';
 
-const Test = () => {
+function Test() {
   return (
     <Container size="sm" title="test-container">
       <Typography>
@@ -12,6 +12,6 @@ const Test = () => {
       </Typography>
     </Container>
   );
-};
+}
 
 export default Test;

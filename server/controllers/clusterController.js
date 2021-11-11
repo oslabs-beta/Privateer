@@ -10,7 +10,7 @@ clusterController.getPods = async (req, res, next) => {
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
     res.locals.pods = await k8sApi.listNamespacedPod('default');
-    next();
+    return next();
   } catch (err) {
     return next({
       log: `clusterController.getPods ERROR: ${err}`,
@@ -27,7 +27,7 @@ clusterController.getServices = async (req, res, next) => {
     const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
     res.locals.services = await k8sApi.listNamespacedService('default');
-    next();
+    return next();
   } catch (err) {
     return next({
       log: `clusterController.getServices ERROR: ${err}`,
@@ -44,7 +44,7 @@ clusterController.getDeployments = async (req, res, next) => {
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
     res.locals.deployments = await k8sApi.listNamespacedDeployment('default');
-    next();
+    return next();
   } catch (err) {
     return next({
       log: `clusterController.getDeployments ERROR: ${err}`,
@@ -61,7 +61,7 @@ clusterController.getIngresses = async (req, res, next) => {
     const k8sApi = kc.makeApiClient(k8s.ExtensionsV1beta1Api);
 
     res.locals.ingresses = await k8sApi.listNamespacedIngress('default');
-    next();
+    return next();
   } catch (err) {
     return next({
       log: `clusterController.getIngresses ERROR: ${err}`,

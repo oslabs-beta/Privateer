@@ -13,7 +13,7 @@ import { startCase } from 'lodash';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const DenseTable = function ({ nodeData }) {
+function DenseTable({ nodeData }) {
   return (
     <TableContainer>
       <Table sx={{ maxWidth: 500 }} size="small" aria-label="a dense table">
@@ -59,26 +59,25 @@ const DenseTable = function ({ nodeData }) {
                   </TableRow>
                 </React.Fragment>
               );
-            } else {
-              return (
-                <TableRow
-                  key={k}
-                  sx={{
-                    '&:last-child td, &:last-child th': { border: 0 },
-                  }}
-                >
-                  <TableCell component="th" scope="row">
-                    {/[.\/]/.test(k) ? k : startCase(k)}
-                  </TableCell>
-                  <TableCell>{v}</TableCell>
-                </TableRow>
-              );
             }
+            return (
+              <TableRow
+                key={k}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}
+              >
+                <TableCell component="th" scope="row">
+                  {/[./]/.test(k) ? k : startCase(k)}
+                </TableCell>
+                <TableCell>{v}</TableCell>
+              </TableRow>
+            );
           })}
         </TableBody>
       </Table>
     </TableContainer>
   );
-};
+}
 
 export default DenseTable;

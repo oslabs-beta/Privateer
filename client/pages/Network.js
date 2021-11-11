@@ -1,16 +1,16 @@
 import Graph from 'react-graph-vis';
 import React, { useState, useEffect } from 'react';
+import { Container } from '@mui/material';
+import axios from 'axios';
 import podImg from '../assets/k8_icons/pod-128.png';
 import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
 import deploymentImg from '../assets/k8_icons/deploy-128.png';
 import NetworkModal from '../components/network/NetworkModal';
 import options from '../constants/graphOptions';
-import { Container } from '@mui/material';
-import axios from 'axios';
 
-const MonitorGraph = () => {
-  //maps Kubernetes object icons to object kind
+function MonitorGraph() {
+  // maps Kubernetes object icons to object kind
   const imgMap = {
     ingress: ingressImg,
     service: serviceImg,
@@ -18,28 +18,26 @@ const MonitorGraph = () => {
     deployment: deploymentImg,
   };
 
-  //uses Kubernetes object data to creates vis.js node objects with styling
-  const makeNode = (data) => {
-    return {
-      id: data.uid,
-      font: {
-        color: 'black',
-        size: 22,
-        face: 'robato',
-        strokeWidth: 3,
-        strokeColor: 'white',
-      },
-      label: data.name,
-      shape: 'image',
-      shapeProperties: {
-        useImageSize: true,
-      },
-      shadow: {
-        enabled: true,
-      },
-      image: imgMap[data.kind],
-    };
-  };
+  // uses Kubernetes object data to creates vis.js node objects with styling
+  const makeNode = (data) => ({
+    id: data.uid,
+    font: {
+      color: 'black',
+      size: 22,
+      face: 'robato',
+      strokeWidth: 3,
+      strokeColor: 'white',
+    },
+    label: data.name,
+    shape: 'image',
+    shapeProperties: {
+      useImageSize: true,
+    },
+    shadow: {
+      enabled: true,
+    },
+    image: imgMap[data.kind],
+  });
 
   const [state, setState] = useState({
     graph: {
@@ -48,15 +46,16 @@ const MonitorGraph = () => {
     },
     nodeData: {},
     events: {
-      //if user clicks a node, open modal and store node id and pointer location in state
+      // if user clicks a node, open modal and store node id and pointer location in state
       click: ({ nodes, pointer: { DOM } }) => {
-        if (nodes.length)
-          setState((state) => ({
-            ...state,
-            selectedNode: state.nodeData[nodes[0]],
+        if (nodes.length) {
+          setState((oldState) => ({
+            ...oldState,
+            selectedNode: oldState.nodeData[nodes[0]],
             pointerLocation: DOM,
             modalOpen: true,
           }));
+        }
       },
     },
     modalOpen: false,
@@ -73,7 +72,7 @@ const MonitorGraph = () => {
     const nodeData = {};
     const serviceData = {};
     const podResponse = await axios.get('/api/cluster/pods');
-    podResponse.data.body.items.map((pod) => {
+    podResponse.data.body.items.forEach((pod) => {
       const {
         metadata: { name, uid, creationTimestamp: created, labels },
         spec: { containers: containerData },
@@ -81,8 +80,8 @@ const MonitorGraph = () => {
       } = pod;
       const containers = {};
       containerData.forEach((container) => {
-        const { name, image } = container;
-        containers[name] = { image };
+        const { containerName, image } = container;
+        containers[containerName] = { image };
       });
       nodes.push(uid);
       nodeData[uid] = {
@@ -98,7 +97,7 @@ const MonitorGraph = () => {
       };
     });
     const deploymentResponse = await axios.get('/api/cluster/deployments');
-    deploymentResponse.data.body.items.map((deployment) => {
+    deploymentResponse.data.body.items.forEach((deployment) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: {
@@ -125,7 +124,7 @@ const MonitorGraph = () => {
       };
     });
     const serviceResponse = await axios.get('/api/cluster/services');
-    serviceResponse.data.body.items.map((service) => {
+    serviceResponse.data.body.items.forEach((service) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: { ports, selector, clusterIP, type },
@@ -154,7 +153,7 @@ const MonitorGraph = () => {
       };
     });
     const ingressResponse = await axios.get('/api/cluster/ingresses');
-    ingressResponse.data.body.items.map((ingress) => {
+    ingressResponse.data.body.items.forEach((ingress) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: { ingressClassName: className, rules: ruleData },
@@ -200,11 +199,13 @@ const MonitorGraph = () => {
         nodeData={nodeData}
         modalOpen={modalOpen}
         pointerLocation={pointerLocation}
-        setClosed={() => setState((state) => ({ ...state, modalOpen: false }))}
+        setClosed={() =>
+          setState((oldState) => ({ ...oldState, modalOpen: false }))
+        }
       />
       <Graph graph={graph} options={options} events={events} />
     </Container>
   );
-};
+}
 
 export default MonitorGraph;
