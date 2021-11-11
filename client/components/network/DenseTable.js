@@ -23,14 +23,14 @@ const DenseTable = ({ nodeData }) => {
             if (typeof v === 'object') {
               const [open, setOpen] = useState(false);
               return (
-                <>
+                <React.Fragment key={k}>
                   <TableRow
                     key={k}
                     sx={{
                       '&:last-child td, &:last-child th': { border: 0 },
                     }}
                   >
-                    <TableCell>{startCase(k)}</TableCell>
+                    <TableCell>{/[.\/]/.test(k) ? k : startCase(k)}</TableCell>
                     <TableCell>
                       <IconButton
                         aria-label="expand row"
@@ -52,13 +52,13 @@ const DenseTable = ({ nodeData }) => {
                       colSpan={2}
                     >
                       <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 0 }}>
+                        <Box sx={{ margin: 0, border: 0 }}>
                           <DenseTable nodeData={v} />
                         </Box>
                       </Collapse>
                     </TableCell>
                   </TableRow>
-                </>
+                </React.Fragment>
               );
             } else {
               return (
@@ -69,7 +69,7 @@ const DenseTable = ({ nodeData }) => {
                   }}
                 >
                   <TableCell component="th" scope="row">
-                    {startCase(k)}
+                    {/[.\/]/.test(k) ? k : startCase(k)}
                   </TableCell>
                   <TableCell>{v}</TableCell>
                 </TableRow>
