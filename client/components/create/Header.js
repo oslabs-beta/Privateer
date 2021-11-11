@@ -13,7 +13,7 @@ function CenteredTabs({ drawerWidth }) {
 
   return (
     <Box sx={{ width: '100%', bgcolor: '#121212', borderBottomRightRadius: 20 , borderBottomLeftRadius: 20, height: 75 }}>
-      <Tabs value={value} onChange={handleChange} centered>
+      <Tabs title="header" value={value} onChange={handleChange} centered>
         <Tab sx={{width:'25%'}} label="ConfigMap" component={Link} to={'/create/configMap'}/>
         <Tab sx={{width:'25%'}} label="Secret" component={Link} to={'/create/secret'}/>
         <Tab sx={{width:'25%'}} label="Deployment" component={Link} to={'/create/deploy'}/>

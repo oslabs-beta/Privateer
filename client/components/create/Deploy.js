@@ -50,7 +50,7 @@ const Deploy = (props) => {
   return (
     <Paper elevation={0}
       sx={{margin: 10, padding: 5}} className='Paper_form_container'>  
-        <form className='tabs'>
+        <form title='deployment' className='tabs'>
           <p>What is your Deployment Api Version</p>
           <TextField
             required
@@ -127,7 +127,7 @@ const Deploy = (props) => {
               });
             }
           }>
-            Create
+            create
           </Button>
         </form>
       </Paper>
