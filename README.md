@@ -34,8 +34,8 @@ Monitor your Kubernetes cluster directly from this application using our integra
 
 <div align="center">
 
-![network](https://user-images.githubusercontent.com/69579929/141356994-c5279563-5c96-4c66-b771-cedc7fe10c25.gif)
- 
+![recording (1)](https://user-images.githubusercontent.com/84036184/141372205-9b3b8972-8eb0-4649-9cc8-b854bb66520a.gif)
+
  </div>
  
 ## Network Page:
