@@ -5,9 +5,9 @@ import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
 import deploymentImg from '../assets/k8_icons/deploy-128.png';
 import NetworkModal from '../components/network/NetworkModal';
+import fetchNetworkData from '../util/fetchNetworkData';
 import options from '../constants/graphOptions';
 import { Container } from '@mui/material';
-import axios from 'axios';
 
 const MonitorGraph = () => {
   //maps Kubernetes object icons to object kind
@@ -68,6 +68,7 @@ const MonitorGraph = () => {
   });
 
   useEffect(async () => {
+<<<<<<< HEAD
     const nodes = [];
     const edges = [];
     const nodeData = {};
@@ -184,6 +185,9 @@ const MonitorGraph = () => {
         rules,
       };
     });
+=======
+    const { nodes, edges, nodeData } = await fetchNetworkData();
+>>>>>>> 54b4eb2cf2a6e1bb36c0b8d115b9a05d8c19842d
     setState({
       ...state,
       nodeData,

@@ -2,6 +2,23 @@ const k8s = require('@kubernetes/client-node');
 
 const clusterController = {};
 
+clusterController.getNamespaces = async (req, res, next) => {
+  try {
+    const kc = new k8s.KubeConfig();
+    kc.loadFromDefault();
+
+    const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+
+    res.locals.namespaces = await k8sApi.listNamespaces('default');
+    next();
+  } catch (err) {
+    return next({
+      log: `clusterController.getNamespaces ERROR: ${err}`,
+      message: { err: 'An error occurred' },
+    });
+  }
+};
+
 clusterController.getPods = async (req, res, next) => {
   try {
     const kc = new k8s.KubeConfig();
