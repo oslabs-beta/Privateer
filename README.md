@@ -20,7 +20,12 @@ Privateer is a lightweight Kubernetes prototyping and monitoring tool developed 
 
 <div align="center">
 
-  ![placeholder](https://user-images.githubusercontent.com/69579929/140405316-69c92b10-ec89-403a-a030-fa44edc276d3.gif)
+
+![create3](https://user-images.githubusercontent.com/69579929/141355761-e12df616-c1a0-4c34-86f6-d3f6a913726f.gif)
+
+![network](https://user-images.githubusercontent.com/69579929/141356994-c5279563-5c96-4c66-b771-cedc7fe10c25.gif)
+
+
 
  </div>
 
