@@ -1,6 +1,6 @@
 <div  align="center">
-  
-  ![teamLogo](https://user-images.githubusercontent.com/69579929/140405057-9fa3c43f-303e-4714-89dc-a4f35efa2b68.png)
+ 
+<img src="https://user-images.githubusercontent.com/69579929/141202691-c2d43597-3acb-4b84-976f-18defa996f3a.png" height=400/>
 
   <h1>Privateer</h1>
 
@@ -16,7 +16,7 @@
 
 ## About:
 
-Privateer is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Privateer is a lightweight Kubernetes prototyping and monitoring tool developed in Electron.js.
 
 <div align="center">
 
@@ -32,7 +32,7 @@ Privateer is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 
   - Create a new `Monitoring` namespace using the command: `kubectl create namespace monitoring` 
   - Run the command `kubectl get pods --namespace=monitoring` and note the names of your Prometheus and Grafana pods.
-  - Navigate to the Privateer root directory in your terminal and run the command `
+  - Navigate to the Privateer root directory in your terminal and run the command `kubectl apply -f infra` to install Prometheus and Grafana in your cluster.
   - Run the command `kubectl port-forward [YOUR PROMETHEUS POD NAME] 9090:9090 -n monitoring` to make your Prometheus pod accessible on port 9090.
   - Run the command `kubectl port-forward [YOUR GRAFANA POD NAME] 3000:3000 -n monitoring`to make your Grafana pod accessible on port 3000.
 
@@ -53,6 +53,12 @@ Privateer is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 - [Vis.js](https://visjs.org/)
 - [Kubernetes-client](https://github.com/kubernetes-client/)
 - [Material UI](https://mui.com/)
+
+## Planned Features:
+
+- Integrated load-testing of Kubernetes cluster.
+- Ability to create and modify cluster configurations using a GUI.
+- Distribution of application as a standalone executable file.
 
 ## Contributors:
 
