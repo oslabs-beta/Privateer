@@ -12,7 +12,7 @@ const options = {
   },
   edges: {
     color: '#ffffff',
-    width: 6,
+    width: 8,
     shadow: {
       enabled: true,
     },

@@ -5,9 +5,9 @@ import serviceImg from '../assets/k8_icons/svc-128.png';
 import ingressImg from '../assets/k8_icons/ing-128.png';
 import deploymentImg from '../assets/k8_icons/deploy-128.png';
 import NetworkModal from '../components/network/NetworkModal';
+import fetchNetworkData from '../util/fetchNetworkData';
 import options from '../constants/graphOptions';
 import { Container } from '@mui/material';
-import axios from 'axios';
 
 const MonitorGraph = () => {
   //maps Kubernetes object icons to object kind
@@ -23,11 +23,11 @@ const MonitorGraph = () => {
     return {
       id: data.uid,
       font: {
-        color: 'white',
+        color: 'black',
         size: 22,
         face: 'robato',
         strokeWidth: 3,
-        strokeColor: 'black',
+        strokeColor: 'white',
       },
       label: data.name,
       shape: 'image',
@@ -68,89 +68,7 @@ const MonitorGraph = () => {
   });
 
   useEffect(async () => {
-    const nodes = [];
-    const edges = [];
-    const nodeData = {};
-    const podResponse = await axios.get('/api/cluster/pods');
-    podResponse.data.body.items.map((pod) => {
-      const {
-        metadata: { name, uid, creationTimestamp: created, labels },
-        spec: { containers: containerData },
-        status: { phase: status, hostIP, podIP },
-      } = pod;
-      const containers = {};
-      containerData.forEach((container) => {
-        const { name, image } = container;
-        containers[name] = { image };
-      });
-      nodes.push(uid);
-      nodeData[uid] = {
-        kind: 'pod',
-        name,
-        uid,
-        created,
-        labels,
-        containers,
-        status,
-        hostIP,
-        podIP,
-      };
-    });
-    const deploymentResponse = await axios.get('/api/cluster/deployments');
-    deploymentResponse.data.body.items.map((deployment) => {
-      const {
-        metadata: { name, uid, creationTimestamp: created },
-        spec: {
-          selector: { matchLabels },
-        },
-        status: { replicas, availableReplicas },
-      } = deployment;
-      Object.values(nodeData).forEach((node) => {
-        if (
-          node.kind === 'pod' &&
-          Object.entries(matchLabels).some(
-            ([label, value]) => node.labels[label] === value
-          )
-        )
-          edges.push({ from: uid, to: node.uid });
-      });
-      nodes.push(uid);
-      nodeData[uid] = {
-        kind: 'deployment',
-        name,
-        uid,
-        created,
-        replicas: `${availableReplicas} / ${replicas}`,
-      };
-    });
-    const serviceResponse = await axios.get('/api/cluster/services');
-    serviceResponse.data.body.items.map((service) => {
-      const {
-        metadata: { name, uid, creationTimestamp: created },
-        spec: { ports, selector, clusterIP, type },
-      } = service;
-      if (selector) {
-        Object.values(nodeData).forEach((node) => {
-          if (
-            node.kind === 'pod' &&
-            Object.entries(selector).some(
-              ([label, value]) => node.labels[label] === value
-            )
-          )
-            edges.push({ from: uid, to: node.uid });
-        });
-      }
-      nodes.push(uid);
-      nodeData[uid] = {
-        kind: 'service',
-        name,
-        uid,
-        created,
-        type,
-        clusterIP,
-        ports,
-      };
-    });
+    const { nodes, edges, nodeData } = await fetchNetworkData();
     setState({
       ...state,
       nodeData,
@@ -161,7 +79,7 @@ const MonitorGraph = () => {
   const { graph, events, selectedNode, modalOpen, pointerLocation } = state;
   const { name: nodeName, ...nodeData } = selectedNode;
   return (
-    <Container maxWidth="false" title="network-container">
+    <Container maxWidth="true" title="network-container">
       <NetworkModal
         nodeName={nodeName}
         nodeData={nodeData}
