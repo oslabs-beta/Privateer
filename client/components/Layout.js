@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidenav from './Sidenav';
 
-const Layout = ({ children }) => {
+function Layout({ children }) {
   return (
     <div id="layout">
       <Sidenav />
@@ -10,6 +10,6 @@ const Layout = ({ children }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Layout;

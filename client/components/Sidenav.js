@@ -16,13 +16,13 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/PrivateerLogo.png';
 import k8Logo from '../assets/k8logo.png';
 
-const styles = (theme) => ({
+const styles = () => ({
   listItem: {},
 });
 
 const drawerWidth = 240;
 
-const Sidenav = () => {
+function Sidenav() {
   return (
     <Drawer
       variant="permanent"
@@ -42,7 +42,12 @@ const Sidenav = () => {
       }}
     >
       <Toolbar>
-        <img src={logo} alt="kuberm8Logo" width={drawerWidth - 20} height='140' />
+        <img
+          src={logo}
+          alt="kuberm8Logo"
+          width={drawerWidth - 20}
+          height="140"
+        />
       </Toolbar>
       <Divider />
       <List>
@@ -89,6 +94,6 @@ const Sidenav = () => {
       </Toolbar>
     </Drawer>
   );
-};
+}
 
 export default Sidenav;

@@ -6,12 +6,10 @@ async function fetchNetworkData() {
   const nodeData = {};
   const serviceData = {};
   const namespaceResponse = await axios.get('/api/cluster/namespaces');
-  const namespaces = namespaceResponse.data.body.items.map((ns) => [
-    ns.metadata.name,
-    ns.metadata.uid,
-  ]);
+  const namespaces = namespaceResponse.data.body.items
+    .map((ns) => [ns.metadata.name, ns.metadata.uid])
+    .filter((namespace) => namespace.slice(0, 4) !== 'kube');
   for (const [namespace, namespaceUID] of namespaces) {
-    if (namespace.slice(0, 4) === 'kube') continue;
     nodes.push(namespaceUID);
     nodeData[namespaceUID] = {
       kind: 'namespace',
@@ -19,7 +17,7 @@ async function fetchNetworkData() {
       uid: namespaceUID,
     };
     const podResponse = await axios.get(`/api/cluster/pods/${namespace}`);
-    podResponse.data.body.items.map((pod) => {
+    podResponse.data.body.items.forEach((pod) => {
       const {
         metadata: { name, uid, creationTimestamp: created, labels },
         spec: { containers: containerData },
@@ -47,7 +45,7 @@ async function fetchNetworkData() {
     const deploymentResponse = await axios.get(
       `/api/cluster/deployments/${namespace}`
     );
-    deploymentResponse.data.body.items.map((deployment) => {
+    deploymentResponse.data.body.items.forEach((deployment) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: {
@@ -61,8 +59,9 @@ async function fetchNetworkData() {
           Object.entries(matchLabels).some(
             ([label, value]) => node.labels[label] === value
           )
-        )
+        ) {
           edges.push({ from: uid, to: node.uid });
+        }
       });
       nodes.push(uid);
       edges.push({ from: namespaceUID, to: uid });
@@ -77,7 +76,7 @@ async function fetchNetworkData() {
     const serviceResponse = await axios.get(
       `/api/cluster/services/${namespace}`
     );
-    serviceResponse.data.body.items.map((service) => {
+    serviceResponse.data.body.items.forEach((service) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: { ports, selector, clusterIP, type },
@@ -89,8 +88,9 @@ async function fetchNetworkData() {
             Object.entries(selector).some(
               ([label, value]) => node.labels[label] === value
             )
-          )
+          ) {
             edges.push({ from: uid, to: node.uid });
+          }
         });
       }
       serviceData[name] = uid;
@@ -109,7 +109,7 @@ async function fetchNetworkData() {
     const ingressResponse = await axios.get(
       `/api/cluster/ingresses/${namespace}`
     );
-    ingressResponse.data.body.items.map((ingress) => {
+    ingressResponse.data.body.items.forEach((ingress) => {
       const {
         metadata: { name, uid, creationTimestamp: created },
         spec: { ingressClassName: className, rules: ruleData },

@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
-import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { spacing } from '@mui/system';
 
-const ConfigMap = (props) => {
+function ConfigMap(props) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const configFileGen = () => {
     const configFile = {
@@ -128,6 +125,6 @@ const ConfigMap = (props) => {
       </form>
     </Paper>
   );
-};
+}
 
 export default ConfigMap;
