@@ -1,5 +1,6 @@
 import Graph from 'react-graph-vis';
 import React, { useState, useEffect } from 'react';
+import { Container } from '@mui/material';
 import namespaceImg from '../assets/k8_icons/ns-128.png';
 import podImg from '../assets/k8_icons/pod-128.png';
 import serviceImg from '../assets/k8_icons/svc-128.png';
@@ -19,28 +20,26 @@ function MonitorGraph() {
     deployment: deploymentImg,
   };
 
-  //uses Kubernetes object data to creates vis.js node objects with styling
-  const makeNode = (data) => {
-    return {
-      id: data.uid,
-      font: {
-        color: 'black',
-        size: 22,
-        face: 'robato',
-        strokeWidth: 3,
-        strokeColor: 'white',
-      },
-      label: data.name.length > 18 ? data.name.slice(0, 20) + '...' : data.name,
-      shape: 'image',
-      shapeProperties: {
-        useImageSize: true,
-      },
-      shadow: {
-        enabled: true,
-      },
-      image: imgMap[data.kind],
-    };
-  };
+  // uses Kubernetes object data to creates vis.js node objects with styling
+  const makeNode = (data) => ({
+    id: data.uid,
+    font: {
+      color: 'black',
+      size: 22,
+      face: 'robato',
+      strokeWidth: 3,
+      strokeColor: 'white',
+    },
+    label: data.name.length > 18 ? `${data.name.slice(0, 20)}...` : data.name,
+    shape: 'image',
+    shapeProperties: {
+      useImageSize: true,
+    },
+    shadow: {
+      enabled: true,
+    },
+    image: imgMap[data.kind],
+  });
 
   const [state, setState] = useState({
     graph: {

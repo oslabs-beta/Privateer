@@ -9,7 +9,12 @@ function Monitor() {
       sx={{ marginTop: '1em' }}
     >
       <Card>
-        <iframe width="100%" height="1080px" src="http://localhost:3000" />
+        <iframe
+          title="grafana-dashboard"
+          width="100%"
+          height="1080px"
+          src="http://localhost:3000"
+        />
       </Card>
     </Container>
   );

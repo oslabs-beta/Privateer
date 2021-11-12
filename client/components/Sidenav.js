@@ -42,7 +42,12 @@ function Sidenav() {
       }}
     >
       <Toolbar>
-        <img src={logo} alt="kuberm8Logo" width={drawerWidth - 20} height='140' />
+        <img
+          src={logo}
+          alt="kuberm8Logo"
+          width={drawerWidth - 20}
+          height="140"
+        />
       </Toolbar>
       <Divider />
       <List>
