@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     node: true,
     jest: true,
-    // es2021: true,
+    es2021: true,
   },
   extends: ['plugin:react/recommended', 'airbnb'],
   parserOptions: {
