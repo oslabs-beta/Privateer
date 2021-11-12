@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const YAML = require('yaml');
 
-const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3000;
+const PORT = process.env.NODE_ENV === 'development' ? 8080 : 3070;
 
 function createWindow() {
   const win = new BrowserWindow({

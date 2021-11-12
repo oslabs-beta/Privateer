@@ -4,12 +4,7 @@ import React from 'react';
 function Test() {
   return (
     <Container size="sm" title="test-container">
-      <Typography>
-        TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE
-        TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE
-        TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE TEST PAGE
-        TEST PAGE TEST PAGE
-      </Typography>
+      <Typography>COMING SOON!</Typography>
     </Container>
   );
 }

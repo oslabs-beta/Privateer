@@ -59,7 +59,7 @@ function Secret(props) {
       className="Paper_form_container"
     >
       <form title="secret" className="tabs">
-        <p>What is "Secret" your Api Version</p>
+        <p>Enter your "apiVersion:" value</p>
         <TextField
           required
           id="outlined-required"
@@ -69,7 +69,7 @@ function Secret(props) {
             props.changeState({ ...props.secState, apiVersion: e.target.value })
           }
         />
-        <p>What is your "Secret metadata" name?</p>
+        <p>Enter Metadata "name:" value</p>
         <TextField
           required
           id="outlined-required"
@@ -79,7 +79,7 @@ function Secret(props) {
             props.changeState({ ...props.secState, metaName: e.target.value })
           }
         />
-        <p>What is your "Secret" type?</p>
+        <p>Enter your "type:" if other than "Opaque"</p>
         <TextField
           required
           id="outlined-required"
@@ -89,7 +89,7 @@ function Secret(props) {
             props.changeState({ ...props.secState, type: e.target.value })
           }
         />
-        <p>How many "Secret data" key/value pairs?</p>
+        <p>How many "data:" key/value pairs?</p>
         <TextField
           id="outlined-number"
           label="Number"
@@ -102,7 +102,6 @@ function Secret(props) {
             props.changeState({ ...props.secState, dataNum: e.target.value })
           }
         />
-        <h4>"Secret" Data</h4>
         {multiFields}
       </form>
       <form className="file-save-buttons">
