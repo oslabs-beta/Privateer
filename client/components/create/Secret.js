@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
-import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { spacing } from '@mui/system';
 
-const Secret = (props) => {
+function Secret(props) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const secretFileGen = () => {
     const secretFile = {
@@ -25,10 +22,9 @@ const Secret = (props) => {
   };
   const multiFields = [];
   for (let i = 0; i < props.secDataNum; i++) {
-    console.log();
     multiFields.push(
       <div key={i} className="data">
-        <p>Key/value pair {i + 1} </p>
+        <p> "Secret" Data Key/Value Pair {i + 1} </p>
         <div>
           <TextField
             required
@@ -140,6 +136,6 @@ const Secret = (props) => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Secret;

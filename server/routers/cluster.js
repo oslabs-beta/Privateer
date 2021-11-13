@@ -1,6 +1,5 @@
-const clusterController = require('../controllers/clusterController');
-
 const router = require('express').Router();
+const clusterController = require('../controllers/clusterController');
 
 router.get('/namespaces', clusterController.getNamespaces, (req, res) => {
   res.status(200).json(res.locals.namespaces);

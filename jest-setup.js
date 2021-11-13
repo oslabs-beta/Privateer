@@ -1,7 +1,7 @@
-//enables testing-library/jest-dom for more declarative testing
+// enables testing-library/jest-dom for more declarative testing
 import '@testing-library/jest-dom';
 
-//polyfills for react-graph-vis, necessary to test Network component
+// polyfills for react-graph-vis, necessary to test Network component
 import 'jest-canvas-mock';
 const nodeCrypto = require('crypto');
 window.crypto = {
@@ -9,7 +9,7 @@ window.crypto = {
     return nodeCrypto.randomFillSync(buffer);
   },
 };
-//mock ipcRenderer, necessary to test Create component
+// mock ipcRenderer, necessary to test Create component
 window.electron = {
   ipcRenderer: {
     chooseDir: jest.fn(),

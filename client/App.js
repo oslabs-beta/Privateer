@@ -18,7 +18,7 @@ const theme = createTheme({
   },
 });
 
-const App = () => {
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -41,6 +41,6 @@ const App = () => {
       </Router>
     </ThemeProvider>
   );
-};
+}
 
 export default App;

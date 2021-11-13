@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import {
+  Box,
   Table,
   TableContainer,
   TableBody,
   TableRow,
   TableCell,
   Collapse,
-  Typography,
   IconButton,
 } from '@mui/material';
 import { startCase } from 'lodash';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Box } from '@mui/system';
 
-const DenseTable = ({ nodeData }) => {
+function DenseTable({ nodeData }) {
   return (
     <TableContainer>
       <Table sx={{ maxWidth: 500 }} size="small" aria-label="a dense table">
@@ -30,7 +29,7 @@ const DenseTable = ({ nodeData }) => {
                       '&:last-child td, &:last-child th': { border: 0 },
                     }}
                   >
-                    <TableCell>{/[.\/]/.test(k) ? k : startCase(k)}</TableCell>
+                    <TableCell>{/[./]/.test(k) ? k : startCase(k)}</TableCell>
                     <TableCell>
                       <IconButton
                         aria-label="expand row"
@@ -60,26 +59,25 @@ const DenseTable = ({ nodeData }) => {
                   </TableRow>
                 </React.Fragment>
               );
-            } else {
-              return (
-                <TableRow
-                  key={k}
-                  sx={{
-                    '&:last-child td, &:last-child th': { border: 0 },
-                  }}
-                >
-                  <TableCell component="th" scope="row">
-                    {/[.\/]/.test(k) ? k : startCase(k)}
-                  </TableCell>
-                  <TableCell>{v}</TableCell>
-                </TableRow>
-              );
             }
+            return (
+              <TableRow
+                key={k}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}
+              >
+                <TableCell component="th" scope="row">
+                  {/[./]/.test(k) ? k : startCase(k)}
+                </TableCell>
+                <TableCell>{v}</TableCell>
+              </TableRow>
+            );
           })}
         </TableBody>
       </Table>
     </TableContainer>
   );
-};
+}
 
 export default DenseTable;

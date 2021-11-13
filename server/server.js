@@ -1,12 +1,12 @@
 const path = require('path');
-
 const express = require('express');
+
 const app = express();
 
 // import routers
 const clusterRouter = require('./routers/cluster');
 
-//utility middleware
+// utility middleware
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
@@ -28,13 +28,13 @@ app.use((err, req, res, next) => {
     status: 500,
     message: { err: 'An error occurred' },
   };
-  const errorObj = Object.assign({}, defaultErr, err);
+  const errorObj = { ...defaultErr, err };
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
 const PORT = process.env.PORT || 3070;
 
-app.listen(PORT, (err) => {
+app.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`);
 });

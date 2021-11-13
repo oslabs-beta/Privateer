@@ -7,13 +7,13 @@ import Typography from '@mui/material/Typography';
 import { Divider } from '@mui/material';
 import DenseTable from './DenseTable';
 
-const NetworkModal = ({
+function NetworkModal({
   nodeName,
   nodeData,
   pointerLocation,
   modalOpen,
   setClosed,
-}) => {
+}) {
   const style = {
     position: 'absolute',
     top: pointerLocation.y,
@@ -55,6 +55,6 @@ const NetworkModal = ({
       </Modal>
     </div>
   );
-};
+}
 
 export default NetworkModal;
