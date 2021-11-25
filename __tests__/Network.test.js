@@ -18,7 +18,7 @@ describe('NetworkModal component', () => {
         nodeName="testName"
         nodeData={{ foo: 'bar' }}
         pointerLocation={{ x: 0, y: 0 }}
-        modalOpen={true}
+        modalOpen
         setClosed={null}
       />
     );
