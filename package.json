@@ -65,13 +65,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oslabs-beta/Kuberm8.git"
+    "url": "git+https://github.com/oslabs-beta/Privateer.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/oslabs-beta/Kuberm8/issues"
+    "url": "https://github.com/oslabs-beta/Privateer/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/Kuberm8#readme"
+  "homepage": "https://github.com/oslabs-beta/Privateer#readme"
 }
