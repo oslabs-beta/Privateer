@@ -25,14 +25,14 @@ module.exports = {
       },
     },
   },
-  //loaders
+  // loaders
   module: {
     rules: [
-      //css
+      // css
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      //images
+      // images
       { test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: 'asset/resource' },
-      //js for babel
+      // js for babel
       {
         test: /.(js|jsx)$/,
         exclude: /node_modules/,
@@ -45,7 +45,7 @@ module.exports = {
       },
     ],
   },
-  //plugins
+  // plugins
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/index.html',
