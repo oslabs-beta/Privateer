@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
-// import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-// import { V1SubjectAccessReviewStatus } from '@kubernetes/client-node';
-// import Box from '@mui/material/Box';
-// import { spacing } from '@mui/system';
 
-const Service = (props) => {
+function Service(props) {
   const servHandleClick = window.electron.ipcRenderer.chooseDir;
   const servFileGen = () => {
     const servFile = {
-      apiVersion: props.servApi,
+      apiVersion: 'v1',
       kind: 'Service',
-      metaData: {
+      metadata: {
         name: props.servMetaName,
       },
       spec: {
@@ -22,7 +18,7 @@ const Service = (props) => {
         },
         ports: [
           {
-            protocal: 'TCP',
+            protocol: 'TCP',
             port: Number(props.servPort),
             targetPort: Number(props.servTargetPort),
           },
@@ -35,20 +31,7 @@ const Service = (props) => {
   return (
     <Paper elevation={0} className="Paper_form_container">
       <form title="service" className="tabs">
-        <p>Enter your "apiVersion:" value</p>
-        <TextField
-          required
-          id="outlined-required"
-          label="Value"
-          value={props.servApi}
-          onChange={(e) =>
-            props.servChangeState({
-              ...props.servState,
-              apiVersion: e.target.value,
-            })
-          }
-        />
-        <p>Enter Metadata "name:" value</p>
+        <p>Service Name: </p>
         <TextField
           required
           id="outlined-required"
@@ -61,7 +44,7 @@ const Service = (props) => {
             })
           }
         />
-        <p>Enter your "app:" name</p>
+        <p>Selector: </p>
         <TextField
           required
           id="outlined-required"
@@ -74,7 +57,7 @@ const Service = (props) => {
             })
           }
         />
-        <p>Enter "port:" number</p>
+        <p>Port: </p>
         <TextField
           id="outlined-required"
           label="Value"
@@ -83,7 +66,7 @@ const Service = (props) => {
             props.servChangeState({ ...props.servState, port: e.target.value })
           }
         />
-        <p>Enter "targetPort:" number</p>
+        <p>Target Port: </p>
         <TextField
           required
           id="outlined-required"
@@ -118,6 +101,6 @@ const Service = (props) => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Service;
