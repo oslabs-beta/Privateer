@@ -112,7 +112,10 @@ function Deploy(props) {
           label="Required?"
           value={props.deployImage}
           onChange={(e) =>
-            props.changeState({ ...props.deployState, image: e.target.value })
+            props.changeState({
+              ...props.deployState,
+              imageName: e.target.value,
+            })
           }
         />
         <p>Port: </p>
@@ -138,7 +141,7 @@ function Deploy(props) {
               metaName: '',
               appName: '',
               replicas: 0,
-              image: '',
+              imageName: '',
               port: '',
               containerName: '',
             });

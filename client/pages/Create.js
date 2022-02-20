@@ -102,7 +102,7 @@ function Create() {
                 deployMetaName={deployState.metaName}
                 deployAppName={deployState.appName}
                 deployReplicas={deployState.replicas}
-                deployImage={deployState.image}
+                deployImage={deployState.imageName}
                 deployContainer={deployState.containerName}
                 deployPort={deployState.port}
                 deployState={deployState}
