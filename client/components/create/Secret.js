@@ -7,16 +7,16 @@ function Secret(props) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const secretFileGen = () => {
     const secretFile = {
-      apiVersion: props.secApi,
+      apiVersion: 'v1',
       kind: 'Secret',
       type: props.secType,
-      metaData: {
+      metadata: {
         name: props.secMetaName,
       },
       data: {},
     };
     for (let i = 0; i < props.secDataNum; i++) {
-      secretFile.data[props.secData[i][0]] = props.secData[i][1];
+      secretFile.data[props.secData[i][0]] = btoa(props.secData[i][1]);
     }
     return secretFile;
   };
@@ -24,7 +24,7 @@ function Secret(props) {
   for (let i = 0; i < props.secDataNum; i++) {
     multiFields.push(
       <div key={i} className="data">
-        <p> "Secret" Data Key/Value Pair {i + 1} </p>
+        <p>Key/value pair {i + 1}</p>
         <div>
           <TextField
             required
@@ -59,17 +59,7 @@ function Secret(props) {
       className="Paper_form_container"
     >
       <form title="secret" className="tabs">
-        <p>Enter your "apiVersion:" value</p>
-        <TextField
-          required
-          id="outlined-required"
-          label="Required?"
-          value={props.secApi}
-          onChange={(e) =>
-            props.changeState({ ...props.secState, apiVersion: e.target.value })
-          }
-        />
-        <p>Enter Metadata "name:" value</p>
+        <p>Name: </p>
         <TextField
           required
           id="outlined-required"
@@ -79,7 +69,7 @@ function Secret(props) {
             props.changeState({ ...props.secState, metaName: e.target.value })
           }
         />
-        <p>Enter your "type:" if other than "Opaque"</p>
+        <p>Type: </p>
         <TextField
           required
           id="outlined-required"
@@ -89,7 +79,7 @@ function Secret(props) {
             props.changeState({ ...props.secState, type: e.target.value })
           }
         />
-        <p>How many "data:" key/value pairs?</p>
+        <p># of Key/value Pairs: </p>
         <TextField
           id="outlined-number"
           label="Number"
@@ -110,25 +100,24 @@ function Secret(props) {
           variant="contained"
           onClick={() => {
             const obj = secretFileGen();
-            handleClick('secret', obj),
-              props.changeState({
-                apiVersion: '',
-                metaName: '',
-                data: [
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                ],
-                dataNum: 0,
-                type: 'Opaque',
-              });
+            handleClick('secret', obj);
+            props.changeState({
+              metaName: '',
+              data: [
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+              ],
+              dataNum: 0,
+              type: 'Opaque',
+            });
           }}
         >
           create

@@ -7,9 +7,9 @@ function ConfigMap(props) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const configFileGen = () => {
     const configFile = {
-      apiVersion: props.cmApi,
+      apiVersion: 'v1',
       kind: 'ConfigMap',
-      metaData: {
+      metadata: {
         name: props.cmMetaName,
       },
       data: {},
@@ -59,17 +59,7 @@ function ConfigMap(props) {
       className="Paper_form_container"
     >
       <form title="config" className="tabs">
-        <p>Enter your "apiVersion:" value</p>
-        <TextField
-          required
-          id="outlined-required"
-          label="Required?"
-          value={props.cmApi}
-          onChange={(e) =>
-            props.changeState({ ...props.cmState, apiVersion: e.target.value })
-          }
-        />
-        <p>Enter Metadata "name:" value</p>
+        <p>Name: </p>
         <TextField
           required
           id="outlined-required"
@@ -79,7 +69,7 @@ function ConfigMap(props) {
             props.changeState({ ...props.cmState, metaName: e.target.value })
           }
         />
-        <p>How many "data:" key/value pairs?</p>
+        <p># of Key/value Pairs: </p>
         <TextField
           id="outlined-number"
           label="Number"
@@ -102,7 +92,6 @@ function ConfigMap(props) {
             const obj = configFileGen();
             handleClick('configMap', obj);
             props.changeState({
-              apiVersion: '',
               metaName: '',
               data: [
                 ['', ''],

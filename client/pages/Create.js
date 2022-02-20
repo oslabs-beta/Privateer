@@ -12,7 +12,6 @@ import CenteredTabs from '../components/create/Header';
 function Create() {
   // Hooks for stateConfigMap.js
   const [cmState, setCmState] = useState({
-    apiVersion: '',
     metaName: '',
     data: [
       ['', ''],
@@ -31,7 +30,6 @@ function Create() {
 
   // Hooks for Secret.js
   const [secState, setSecState] = useState({
-    apiVersion: '',
     metaName: '',
     data: [
       ['', ''],
@@ -51,7 +49,6 @@ function Create() {
 
   // Hooks for DepServ.js
   const [deployState, setDeployState] = useState({
-    apiVersion: '',
     metaName: '',
     appName: '',
     replicas: 0,
@@ -62,7 +59,6 @@ function Create() {
 
   // Hooks for Service.js
   const [servState, setServState] = useState({
-    apiVersion: '',
     metaName: '',
     appName: '',
     port: '',
@@ -102,7 +98,7 @@ function Create() {
                 deployMetaName={deployState.metaName}
                 deployAppName={deployState.appName}
                 deployReplicas={deployState.replicas}
-                deployImage={deployState.image}
+                deployImage={deployState.imageName}
                 deployContainer={deployState.containerName}
                 deployPort={deployState.port}
                 deployState={deployState}

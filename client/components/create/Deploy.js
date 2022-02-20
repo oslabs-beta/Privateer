@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
-import { renderEditInputCell, useGridControlState } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { spacing } from '@mui/system';
 
-const Deploy = (props) => {
+function Deploy(props) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const deployFileGen = () => {
     const deployFile = {
-      apiVersion: props.deployApi,
+      apiVersion: 'apps/v1',
       kind: 'Deployment',
-      metaData: {
+      metadata: {
         name: props.deployMetaName,
         labels: {
           app: props.deployAppName,
@@ -26,7 +23,7 @@ const Deploy = (props) => {
           },
         },
         template: {
-          metaData: {
+          metadata: {
             labels: {
               app: props.deployAppName,
             },
@@ -56,20 +53,7 @@ const Deploy = (props) => {
       className="Paper_form_container"
     >
       <form title="deployment" className="tabs">
-        <p>Enter your "apiVersion:" value</p>
-        <TextField
-          required
-          id="outlined-required"
-          label="Required?"
-          value={props.deployApi}
-          onChange={(e) =>
-            props.changeState({
-              ...props.deployState,
-              apiVersion: e.target.value,
-            })
-          }
-        />
-        <p>Enter Metadata "name:" value</p>
+        <p>Deployment Name: </p>
         <TextField
           required
           id="outlined-required"
@@ -82,7 +66,7 @@ const Deploy = (props) => {
             })
           }
         />
-        <p>Enter your "app:" name</p>
+        <p>Selector: </p>
         <TextField
           required
           id="outlined-required"
@@ -92,7 +76,7 @@ const Deploy = (props) => {
             props.changeState({ ...props.deployState, appName: e.target.value })
           }
         />
-        <p>Enter number of replica Pods you would like</p>
+        <p>Replicas: </p>
         <TextField
           id="outlined-number"
           label="Number"
@@ -108,7 +92,7 @@ const Deploy = (props) => {
             })
           }
         />
-        <p>Enter the container's name (take one from docker)</p>
+        <p>Container Name: </p>
         <TextField
           required
           id="outlined-required"
@@ -121,17 +105,20 @@ const Deploy = (props) => {
             })
           }
         />
-        <p>Enter your image name and tag (can be found in DockerHub)</p>
+        <p>Container Image: </p>
         <TextField
           required
           id="outlined-required"
           label="Required?"
           value={props.deployImage}
           onChange={(e) =>
-            props.changeState({ ...props.deployState, image: e.target.value })
+            props.changeState({
+              ...props.deployState,
+              imageName: e.target.value,
+            })
           }
         />
-        <p>Enter the port number you would you like to run your container on</p>
+        <p>Port: </p>
         <TextField
           required
           id="outlined-required"
@@ -150,11 +137,10 @@ const Deploy = (props) => {
             const obj = deployFileGen();
             handleClick(props.deployAppName, obj);
             props.changeState({
-              apiVersion: '',
               metaName: '',
               appName: '',
               replicas: 0,
-              image: '',
+              imageName: '',
               port: '',
               containerName: '',
             });
@@ -165,6 +151,6 @@ const Deploy = (props) => {
       </form>
     </Paper>
   );
-};
+}
 
 export default Deploy;
