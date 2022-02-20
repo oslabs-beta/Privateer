@@ -92,7 +92,6 @@ function ConfigMap(props) {
             const obj = configFileGen();
             handleClick('configMap', obj);
             props.changeState({
-              apiVersion: '',
               metaName: '',
               data: [
                 ['', ''],

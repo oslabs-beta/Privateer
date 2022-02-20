@@ -100,25 +100,24 @@ function Secret(props) {
           variant="contained"
           onClick={() => {
             const obj = secretFileGen();
-            handleClick('secret', obj),
-              props.changeState({
-                apiVersion: '',
-                metaName: '',
-                data: [
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                  ['', ''],
-                ],
-                dataNum: 0,
-                type: 'Opaque',
-              });
+            handleClick('secret', obj);
+            props.changeState({
+              metaName: '',
+              data: [
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+                ['', ''],
+              ],
+              dataNum: 0,
+              type: 'Opaque',
+            });
           }}
         >
           create

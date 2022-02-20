@@ -137,7 +137,6 @@ function Deploy(props) {
             const obj = deployFileGen();
             handleClick(props.deployAppName, obj);
             props.changeState({
-              apiVersion: '',
               metaName: '',
               appName: '',
               replicas: 0,

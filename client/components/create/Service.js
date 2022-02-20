@@ -88,7 +88,6 @@ function Service(props) {
             const servObj = servFileGen();
             servHandleClick('service', servObj);
             props.servChangeState({
-              apiVersion: '',
               metaName: '',
               appName: '',
               port: '',
