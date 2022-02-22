@@ -10,7 +10,7 @@ import CenteredTabs from '../components/create/Header';
 
 // Renders the Create container
 function Create() {
-  // Hooks for stateConfigMap.js
+  // Hooks for ConfigMap.js
   const [cmState, setCmState] = useState({
     metaName: '',
     data: [
@@ -47,7 +47,7 @@ function Create() {
     type: 'Opaque',
   });
 
-  // Hooks for DepServ.js
+  // Hooks for Deploy.js
   const [deployState, setDeployState] = useState({
     metaName: '',
     appName: '',

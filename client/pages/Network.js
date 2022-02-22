@@ -8,7 +8,7 @@ import ingressImg from '../assets/k8_icons/ing-128.png';
 import deploymentImg from '../assets/k8_icons/deploy-128.png';
 import NetworkModal from '../components/network/NetworkModal';
 import fetchNetworkData from '../util/fetchNetworkData';
-import options from '../constants/graphOptions';
+import GRAPH_OPTIONS from '../constants/graphOptions';
 
 function MonitorGraph() {
   // maps Kubernetes object icons to object kind
@@ -90,7 +90,7 @@ function MonitorGraph() {
           setState((oldState) => ({ ...oldState, modalOpen: false }))
         }
       />
-      <Graph graph={graph} options={options} events={events} />
+      <Graph graph={graph} options={GRAPH_OPTIONS} events={events} />
     </Container>
   );
 }
