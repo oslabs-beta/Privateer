@@ -1,4 +1,4 @@
-const options = {
+const GRAPH_OPTIONS = {
   autoResize: true,
   layout: {
     improvedLayout: true,
@@ -37,4 +37,4 @@ const options = {
   },
 };
 
-export default options;
+export default GRAPH_OPTIONS;

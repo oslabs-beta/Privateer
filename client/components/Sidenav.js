@@ -16,10 +16,6 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/PrivateerLogo.png';
 import k8Logo from '../assets/k8logo.png';
 
-const styles = () => ({
-  listItem: {},
-});
-
 const drawerWidth = 240;
 
 function Sidenav() {
@@ -51,12 +47,7 @@ function Sidenav() {
       </Toolbar>
       <Divider />
       <List>
-        <ListItem
-          button
-          component={Link}
-          to="/create/configmap"
-          className={styles.listItem}
-        >
+        <ListItem button component={Link} to="/create/configmap">
           <ListItemIcon>
             <DirectionsBoatFilledTwoToneIcon />
           </ListItemIcon>

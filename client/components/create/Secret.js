@@ -16,6 +16,7 @@ function Secret(props) {
       data: {},
     };
     for (let i = 0; i < props.secDataNum; i++) {
+      // secret values must be base64-encoded in K8S YAML
       secretFile.data[props.secData[i][0]] = btoa(props.secData[i][1]);
     }
     return secretFile;
