@@ -57,7 +57,7 @@ function Deploy(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.deployMetaName}
           onChange={(e) =>
             props.changeState({
@@ -70,7 +70,7 @@ function Deploy(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.deployAppName}
           onChange={(e) =>
             props.changeState({ ...props.deployState, appName: e.target.value })
@@ -96,7 +96,7 @@ function Deploy(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.deployContainer}
           onChange={(e) =>
             props.changeState({
@@ -109,7 +109,7 @@ function Deploy(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.deployImage}
           onChange={(e) =>
             props.changeState({
@@ -122,7 +122,7 @@ function Deploy(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.deployPort}
           onChange={(e) =>
             props.changeState({ ...props.deployState, port: e.target.value })

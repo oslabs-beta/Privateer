@@ -63,7 +63,7 @@ function ConfigMap(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.cmMetaName}
           onChange={(e) =>
             props.changeState({ ...props.cmState, metaName: e.target.value })
