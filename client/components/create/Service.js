@@ -35,7 +35,7 @@ function Service(props) {
         <TextField
           required
           id="outlined-required"
-          label="Value"
+          label="Required"
           value={props.servMetaName}
           onChange={(e) =>
             props.servChangeState({
@@ -48,7 +48,7 @@ function Service(props) {
         <TextField
           required
           id="outlined-required"
-          label="Value"
+          label="Required"
           value={props.servAppName}
           onChange={(e) =>
             props.servChangeState({
@@ -59,8 +59,9 @@ function Service(props) {
         />
         <p>Port: </p>
         <TextField
+          required
           id="outlined-required"
-          label="Value"
+          label="Required"
           value={props.servPort}
           onChange={(e) =>
             props.servChangeState({ ...props.servState, port: e.target.value })
@@ -70,7 +71,7 @@ function Service(props) {
         <TextField
           required
           id="outlined-required"
-          label="Value"
+          label="Required"
           value={props.servTargetPort}
           onChange={(e) =>
             props.servChangeState({

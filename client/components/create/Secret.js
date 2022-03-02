@@ -64,7 +64,7 @@ function Secret(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.secMetaName}
           onChange={(e) =>
             props.changeState({ ...props.secState, metaName: e.target.value })
@@ -74,7 +74,7 @@ function Secret(props) {
         <TextField
           required
           id="outlined-required"
-          label="Required?"
+          label="Required"
           value={props.secType}
           onChange={(e) =>
             props.changeState({ ...props.secState, type: e.target.value })
