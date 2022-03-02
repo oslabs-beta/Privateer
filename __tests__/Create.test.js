@@ -36,7 +36,7 @@ describe('Proper routing of components', () => {
 
   it('should render deployment tab when create is intially pressed', async () => {
     userEvent.click(screen.getByText('Create'));
-    const configMap = await screen.findByTitle('deploy');
+    const configMap = await screen.findByTitle('deployment');
     expect(configMap).toBeInTheDocument();
   });
 
