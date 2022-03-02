@@ -1,5 +1,10 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { lightBlue } from '@mui/material/colors';
 import Monitor from './pages/Monitor';
@@ -23,12 +28,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Layout>
+          <Redirect exact from="/" to="/create/deploy" />
           <Switch>
-            <Route exact path="/">
-              <Monitor />
-            </Route>
             <Route path="/create">
               <Create />
+            </Route>
+            <Route exact path="/monitor">
+              <Monitor />
             </Route>
             <Route path="/test">
               <Test />

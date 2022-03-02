@@ -47,13 +47,13 @@ function Sidenav() {
       </Toolbar>
       <Divider />
       <List>
-        <ListItem button component={Link} to="/create/configmap">
+        <ListItem button component={Link} to="/create/deploy">
           <ListItemIcon>
             <DirectionsBoatFilledTwoToneIcon />
           </ListItemIcon>
           <ListItemText primary="Create" />
         </ListItem>
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/monitor">
           <ListItemIcon>
             <AssessmentTwoToneIcon />
           </ListItemIcon>
