@@ -24,18 +24,6 @@ function CenteredTabs() {
       <Tabs title="header" value={value} onChange={handleChange} centered>
         <Tab
           sx={{ width: '25%' }}
-          label="ConfigMap"
-          component={Link}
-          to="/create/configMap"
-        />
-        <Tab
-          sx={{ width: '25%' }}
-          label="Secret"
-          component={Link}
-          to="/create/secret"
-        />
-        <Tab
-          sx={{ width: '25%' }}
           label="Deployment"
           component={Link}
           to="/create/deploy"
@@ -45,6 +33,18 @@ function CenteredTabs() {
           label="Service"
           component={Link}
           to="/create/service"
+        />
+        <Tab
+          sx={{ width: '25%' }}
+          label="ConfigMap"
+          component={Link}
+          to="/create/configMap"
+        />
+        <Tab
+          sx={{ width: '25%' }}
+          label="Secret"
+          component={Link}
+          to="/create/secret"
         />
       </Tabs>
     </Box>

@@ -10,6 +10,24 @@ import CenteredTabs from '../components/create/Header';
 
 // Renders the Create container
 function Create() {
+  // Hooks for Deploy.js
+  const [deployState, setDeployState] = useState({
+    metaName: '',
+    appName: '',
+    replicas: 0,
+    imageName: '',
+    port: '',
+    containerName: '',
+  });
+
+  // Hooks for Service.js
+  const [servState, setServState] = useState({
+    metaName: '',
+    appName: '',
+    port: '',
+    targetPort: '',
+  });
+
   // Hooks for ConfigMap.js
   const [cmState, setCmState] = useState({
     metaName: '',
@@ -47,29 +65,35 @@ function Create() {
     type: 'Opaque',
   });
 
-  // Hooks for Deploy.js
-  const [deployState, setDeployState] = useState({
-    metaName: '',
-    appName: '',
-    replicas: 0,
-    imageName: '',
-    port: '',
-    containerName: '',
-  });
-
-  // Hooks for Service.js
-  const [servState, setServState] = useState({
-    metaName: '',
-    appName: '',
-    port: '',
-    targetPort: '',
-  });
-
   return (
     <Container size="sm" title="create-container" className="create_container">
       <Typography component="span" variant="body2">
         <CenteredTabs />
         <Router>
+          <Route path="/create/deploy">
+            <Deploy
+              deployApi={deployState.apiVersion}
+              deployMetaName={deployState.metaName}
+              deployAppName={deployState.appName}
+              deployReplicas={deployState.replicas}
+              deployImage={deployState.imageName}
+              deployContainer={deployState.containerName}
+              deployPort={deployState.port}
+              deployState={deployState}
+              changeState={setDeployState}
+            />
+          </Route>
+          <Route path="/create/service">
+            <Service
+              servApiVersion={servState.apiVersion}
+              servMetaName={servState.metaName}
+              servAppName={servState.appName}
+              servPort={servState.port}
+              servTargetPort={servState.targetPort}
+              servState={servState}
+              servChangeState={setServState}
+            />
+          </Route>
           <Switch>
             <Route path="/create/configmap">
               <ConfigMap
@@ -90,30 +114,6 @@ function Create() {
                 secType={secState.type}
                 secState={secState}
                 changeState={setSecState}
-              />
-            </Route>
-            <Route path="/create/deploy">
-              <Deploy
-                deployApi={deployState.apiVersion}
-                deployMetaName={deployState.metaName}
-                deployAppName={deployState.appName}
-                deployReplicas={deployState.replicas}
-                deployImage={deployState.imageName}
-                deployContainer={deployState.containerName}
-                deployPort={deployState.port}
-                deployState={deployState}
-                changeState={setDeployState}
-              />
-            </Route>
-            <Route path="/create/service">
-              <Service
-                servApiVersion={servState.apiVersion}
-                servMetaName={servState.metaName}
-                servAppName={servState.appName}
-                servPort={servState.port}
-                servTargetPort={servState.targetPort}
-                servState={servState}
-                servChangeState={setServState}
               />
             </Route>
           </Switch>
