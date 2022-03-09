@@ -5,43 +5,57 @@ async function fetchNetworkData() {
   const edges = [];
   const nodeData = {};
   const serviceData = {};
-  const namespaceResponse = await axios.get('/api/cluster/namespaces');
-  const namespaces = namespaceResponse.data.body.items
-    .map((ns) => [ns.metadata.name, ns.metadata.uid])
-    .filter((namespace) => namespace.slice(0, 4) !== 'kube');
-  for (const [namespace, namespaceUID] of namespaces) {
-    nodes.push(namespaceUID);
-    nodeData[namespaceUID] = {
-      kind: 'namespace',
-      name: namespace,
-      uid: namespaceUID,
-    };
-    const podResponse = await axios.get(`/api/cluster/pods/${namespace}`);
-    podResponse.data.body.items.forEach((pod) => {
-      const {
-        metadata: { name, uid, creationTimestamp: created, labels },
-        spec: { containers: containerData },
-        status: { phase: status, hostIP, podIP },
-      } = pod;
-      const containers = {};
-      containerData.forEach((container) => {
-        const { name, image } = container;
-        containers[name] = { image };
-      });
-      nodes.push(uid);
-      // edges.push({ from: namespaceUID, to: uid });
-      nodeData[uid] = {
-        kind: 'pod',
-        name,
-        uid,
-        created,
-        labels,
-        containers,
-        status,
-        hostIP,
-        podIP,
+
+  async function fetchNamespaceData() {
+    const namespaceResponse = await axios.get('/api/cluster/namespaces');
+    const namespaces = namespaceResponse.data.body.items
+      .map((ns) => [ns.metadata.name, ns.metadata.uid])
+      .filter((namespace) => namespace.slice(0, 4) !== 'kube');
+    namespaces.forEach(([namespace, namespaceUID]) => {
+      nodes.push(namespaceUID);
+      nodeData[namespaceUID] = {
+        kind: 'namespace',
+        name: namespace,
+        uid: namespaceUID,
       };
     });
+    return namespaces;
+  }
+
+  async function fetchPodData(namespaces) {
+    namespaces.forEach(async ([namespace, namespaceUID]) => {
+      const podResponse = await axios.get(`/api/cluster/pods/${namespace}`);
+      podResponse.data.body.items.forEach((pod) => {
+        const {
+          metadata: { name, uid, creationTimestamp: created, labels },
+          spec: { containers: containerData },
+          status: { phase: status, hostIP, podIP },
+        } = pod;
+        const containers = {};
+        containerData.forEach((container) => {
+          const { name: containerName, image } = container;
+          containers[containerName] = { image };
+        });
+        nodes.push(uid);
+        // edges.push({ from: namespaceUID, to: uid });
+        nodeData[uid] = {
+          kind: 'pod',
+          name,
+          uid,
+          created,
+          labels,
+          containers,
+          status,
+          hostIP,
+          podIP,
+        };
+      });
+    });
+  }
+
+  const namespaces = await fetchNamespaceData();
+  const pods = await fetchPodData(namespaces);
+  for (const [namespace, namespaceUID] of namespaces) {
     const deploymentResponse = await axios.get(
       `/api/cluster/deployments/${namespace}`
     );
