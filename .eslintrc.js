@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'no-restricted-syntax': 'off',
     'default-param-last': 'off',
     'react/prop-types': 'off',
     'react/button-has-type': 'off',

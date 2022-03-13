@@ -23,7 +23,7 @@ async function fetchNetworkData() {
   }
 
   async function fetchPodData(namespaces) {
-    namespaces.forEach(async ([namespace, namespaceUID]) => {
+    for await (const [namespace, namespaceUID] of namespaces) {
       const podResponse = await axios.get(`/api/cluster/pods/${namespace}`);
       podResponse.data.body.items.forEach((pod) => {
         const {
@@ -50,11 +50,12 @@ async function fetchNetworkData() {
           podIP,
         };
       });
-    });
+    }
+    return null;
   }
 
   async function fetchDeploymentData(namespaces) {
-    namespaces.forEach(async ([namespace, namespaceUID]) => {
+    for await (const [namespace, namespaceUID] of namespaces) {
       const deploymentResponse = await axios.get(
         `/api/cluster/deployments/${namespace}`
       );
@@ -86,11 +87,11 @@ async function fetchNetworkData() {
           replicas: `${availableReplicas} / ${replicas}`,
         };
       });
-    });
+    }
   }
 
   async function fetchServiceData(namespaces) {
-    namespaces.forEach(async ([namespace, namespaceUID]) => {
+    for await (const [namespace, namespaceUID] of namespaces) {
       const serviceResponse = await axios.get(
         `/api/cluster/services/${namespace}`
       );
@@ -124,50 +125,53 @@ async function fetchNetworkData() {
           ports,
         };
       });
-    });
+    }
+  }
+
+  async function fetchIngressData(namespaces) {
+    for await (const [namespace, namespaceUID] of namespaces) {
+      const ingressResponse = await axios.get(
+        `/api/cluster/ingresses/${namespace}`
+      );
+      ingressResponse.data.body.items.forEach((ingress) => {
+        const {
+          metadata: { name, uid, creationTimestamp: created },
+          spec: { ingressClassName: className, rules: ruleData },
+        } = ingress;
+
+        const rules = {};
+        ruleData.forEach((rule) => {
+          rules[rule.host] = {};
+          rule.http.paths.forEach((pathData) => {
+            const {
+              backend: { serviceName, servicePort },
+              path,
+              pathType,
+            } = pathData;
+            edges.push({ from: uid, to: serviceData[serviceName] });
+            rules[rule.host][path] = { pathType, serviceName, servicePort };
+          });
+        });
+
+        nodes.push(uid);
+        nodeData[uid] = {
+          kind: 'ingress',
+          name,
+          uid,
+          created,
+          className,
+          rules,
+        };
+      });
+    }
   }
 
   const namespaces = await fetchNamespaceData();
   const pods = await fetchPodData(namespaces);
   const deployments = await fetchDeploymentData(namespaces);
   const services = await fetchServiceData(namespaces);
+  const ingresses = await fetchIngressData(namespaces);
 
-  for (const [namespace, namespaceUID] of namespaces) {
-    const ingressResponse = await axios.get(
-      `/api/cluster/ingresses/${namespace}`
-    );
-    ingressResponse.data.body.items.forEach((ingress) => {
-      const {
-        metadata: { name, uid, creationTimestamp: created },
-        spec: { ingressClassName: className, rules: ruleData },
-      } = ingress;
-
-      const rules = {};
-      ruleData.forEach((rule) => {
-        rules[rule.host] = {};
-        rule.http.paths.forEach((pathData) => {
-          const {
-            backend: { serviceName, servicePort },
-            path,
-            pathType,
-          } = pathData;
-          edges.push({ from: uid, to: serviceData[serviceName] });
-          rules[rule.host][path] = { pathType, serviceName, servicePort };
-        });
-      });
-
-      nodes.push(uid);
-      nodeData[uid] = {
-        kind: 'ingress',
-        name,
-        uid,
-        created,
-        className,
-        rules,
-      };
-    });
-  }
-  console.log(nodes, edges);
   return { nodes, edges, nodeData };
 }
 
