@@ -40,7 +40,7 @@ function Sidenav() {
       <Toolbar>
         <img
           src={logo}
-          alt="kuberm8Logo"
+          alt="Privateer Logo"
           width={drawerWidth - 20}
           height="140"
         />

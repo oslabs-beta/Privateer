@@ -61,7 +61,7 @@ body,
   justify-content: center;
   align-items: center;
 }
-/* material ui classnames */
+/* material ui class names */
 .MuiBox-root {
   border-radius: 0 !important;
   background-color: #2b3d58 !important;
@@ -85,9 +85,9 @@ body,
     brightness(93%) contrast(88%);
 }
 
-/* end material ui classnames */
+/* end material ui class names */
 /* //////////////////////////// */
-/* custom classnames */
+/* custom class names */
 iframe {
   background-color: #2b3d58 !important;
 }
