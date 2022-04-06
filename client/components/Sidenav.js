@@ -65,12 +65,6 @@ function Sidenav() {
           </ListItemIcon>
           <ListItemText primary="Network" />
         </ListItem>
-        <ListItem button component={Link} to="/test">
-          <ListItemIcon>
-            <LocalFireDepartmentTwoToneIcon />
-          </ListItemIcon>
-          <ListItemText primary="Test" />
-        </ListItem>
       </List>
       <Toolbar>
         <img
