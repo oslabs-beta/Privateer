@@ -12,8 +12,8 @@ describe('Full app rendering', () => {
   });
 
   it('renders sidenav component', () => {
-    const kuberm8Logo = screen.getByAltText('kuberm8Logo');
-    expect(kuberm8Logo).toBeInTheDocument();
+    const privateerLogo = screen.getByAltText('Privateer Logo');
+    expect(privateerLogo).toBeInTheDocument();
   });
 
   it('renders main div', () => {
@@ -49,11 +49,5 @@ describe('Full app routing', () => {
     userEvent.click(screen.getByText('Network'));
     const networkGraph = screen.getByTitle('network-container');
     expect(networkGraph).toBeInTheDocument();
-  });
-
-  it('routes to Test page', () => {
-    userEvent.click(screen.getByText('Test'));
-    const testContainer = screen.getByTitle('test-container');
-    expect(testContainer).toBeInTheDocument();
   });
 });
