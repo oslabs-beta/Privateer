@@ -66,10 +66,10 @@ Automatically visualize your entire Kubernetes cluster architecture by generatin
   - Run the command `kubectl port-forward [YOUR GRAFANA POD NAME] 3000:3000 -n monitoring` to make your Grafana pod accessible on port 3000.
 
 - `npm install`
+- `npm run build`
 - `npm start`
 
-
-
+<br></br>
 
 ## Built With:
 
