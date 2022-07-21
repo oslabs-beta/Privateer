@@ -9,6 +9,7 @@ import deploymentImg from '../assets/k8_icons/deploy-128.png';
 import NetworkModal from '../components/network/NetworkModal';
 import fetchNetworkData from '../util/fetchNetworkData';
 import GRAPH_OPTIONS from '../constants/graphOptions';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 function MonitorGraph() {
   // maps Kubernetes object icons to object kind
@@ -90,7 +91,9 @@ function MonitorGraph() {
           setState((oldState) => ({ ...oldState, modalOpen: false }))
         }
       />
-      <Graph graph={graph} options={GRAPH_OPTIONS} events={events} />
+      <ErrorBoundary>
+        <Graph graph={graph} options={GRAPH_OPTIONS} events={events} />
+      </ErrorBoundary>
     </Container>
   );
 }
