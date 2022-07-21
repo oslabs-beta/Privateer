@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   Box,
   Table,
@@ -13,12 +13,16 @@ import { startCase } from 'lodash';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-function DenseTable({ nodeData }) {
+interface IDenseTable {
+  nodeData: any;
+}
+
+function DenseTable({ nodeData }: IDenseTable) {
   return (
     <TableContainer>
       <Table sx={{ maxWidth: 500 }} size="small" aria-label="a dense table">
         <TableBody>
-          {Object.entries(nodeData).map(([k, v]) => {
+          {Object.entries(nodeData).map(([k, v]: [string, ReactNode]) => {
             if (typeof v === 'object') {
               const [open, setOpen] = useState(false);
               return (
