@@ -6,6 +6,15 @@ import Grow from '@mui/material/Grow';
 import Typography from '@mui/material/Typography';
 import { Divider } from '@mui/material';
 import DenseTable from './DenseTable';
+import { IPointerLocation } from '../../../types/network';
+
+interface INetworkModal {
+  nodeName: string;
+  nodeData: any;
+  pointerLocation: IPointerLocation;
+  modalOpen: boolean;
+  setClosed: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+}
 
 function NetworkModal({
   nodeName,
@@ -13,7 +22,7 @@ function NetworkModal({
   pointerLocation,
   modalOpen,
   setClosed,
-}) {
+}: INetworkModal) {
   const style = {
     position: 'absolute',
     top: pointerLocation.y,

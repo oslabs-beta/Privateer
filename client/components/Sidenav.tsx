@@ -11,7 +11,6 @@ import {
 import DirectionsBoatFilledTwoToneIcon from '@mui/icons-material/DirectionsBoatFilledTwoTone';
 import AssessmentTwoToneIcon from '@mui/icons-material/AssessmentTwoTone';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
-import LocalFireDepartmentTwoToneIcon from '@mui/icons-material/LocalFireDepartmentTwoTone';
 import { Link } from 'react-router-dom';
 import logo from '../assets/PrivateerLogo.png';
 import k8Logo from '../assets/k8logo.png';
