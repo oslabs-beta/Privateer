@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { IEdge } from '../../types/network';
 
 async function fetchNetworkData() {
-  const nodes = [];
-  const edges = [];
+  const nodes: string[] = [];
+  const edges: IEdge[] = [];
   const nodeData = {};
   const serviceData = {};
 
