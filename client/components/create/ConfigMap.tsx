@@ -3,7 +3,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
-function ConfigMap(props) {
+interface IConfigMap {
+  cmDataNum: number;
+  cmMetaName: string;
+  cmData: string[][];
+  changeState: Function;
+  cmState: any;
+}
+
+function ConfigMap(props: IConfigMap) {
   const handleClick = window.electron.ipcRenderer.chooseDir;
   const configFileGen = () => {
     const configFile = {
@@ -19,7 +27,7 @@ function ConfigMap(props) {
     }
     return configFile;
   };
-  const multiFields = [];
+  const multiFields: ReactNode[] = [];
   for (let i = 0; i < props.cmDataNum; i++) {
     multiFields.push(
       <div key={i} className="data">
